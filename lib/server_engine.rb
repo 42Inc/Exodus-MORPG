@@ -71,11 +71,7 @@ class ServerEngine
         admin_command = @Database.get_adm_command()
         case (admin_command.to_i)
           when 0
-            disconnect_client()
-            @Thread_readsocket_id.exit
-            @client_write.close
-            @client_read.close
-            @readline_socket.close
+            shutdown()
             return
           else
             nothing()
@@ -100,9 +96,17 @@ class ServerEngine
           when 0
             nothing()
           when 1
-            sign_up()
+            com = sign_up()
+            if (com == 0)
+              shutdown()
+              return
+            end
           when 2
-            sign_in()
+            com = sign_in()
+            if (com == 0)
+              shutdown()
+              return
+            end
           else
             reply_err("Enter sign in/up or disconnect [in / up / disc]: ")
         end
@@ -117,6 +121,14 @@ class ServerEngine
       @client_read = -1
     end
 
+    def shutdown()
+      disconnect_client()
+      @Thread_readsocket_id.exit
+      @client_write.close
+      @client_read.close
+      @readline_socket.close
+    end
+
     def reply_err(str = "")
       send_to_client("[Wrong data] #{str}")
     end
@@ -127,8 +139,16 @@ class ServerEngine
 
     def sign_in()
       send_to_client("Enter your login, please:")
+      login = ""
       loop do
         login = ""
+        admin_command = @Database.get_adm_command()
+        case (admin_command.to_i)
+          when 0
+            return 0
+          else
+            nothing()
+        end
         login = get_readline_socket()
         if (login == "-")
           send_to_client("[Exit] Enter sign in/up or disconnect [in / up / disc]: ")
@@ -147,12 +167,21 @@ class ServerEngine
 
       println("[Success login] Client login - '#{login}', ip is #{@client_read.peeraddr[2]} success login")
       send_to_client("[Success login] Enter sign in/up or disconnect [in / up / disc]: ")
+      return -1
     end
 
     def sign_up()
       send_to_client("Enter your login, please:")
       login = ""
       loop do
+        login = ""
+        admin_command = @Database.get_adm_command()
+        case (admin_command.to_i)
+          when 0
+            return 0
+          else
+            nothing()
+        end
         login = get_readline_socket()
         if (login == "-")
           send_to_client("[Exit] Enter sign in/up or disconnect [in / up / disc]: ")
@@ -170,6 +199,7 @@ class ServerEngine
       end
       println("[Success registration] Client login - '#{login}', ip is #{@client_read.peeraddr[2]} success registred")
       send_to_client("[Success registration] Enter sign in/up or disconnect [in / up / disc]: ")
+      return -1
     end
 
     def create_wait_clients_thread()
