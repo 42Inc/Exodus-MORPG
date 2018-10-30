@@ -139,13 +139,13 @@ class ServerEngine
           if (@Database.correct_user?(login))
             break
           else
-            print "[Failed login] Client login - '#{login}', ip is #{@client_read.peeraddr[2]} failed login\n"
+            println("[Failed login] Client login - '#{login}', ip is #{@client_read.peeraddr[2]} failed login")
             send_to_client("[Wrong login] Repeat, please:")
           end
         end
       end
 
-      print "[Success login] Client login - '#{login}', ip is #{@client_read.peeraddr[2]} success login\n"
+      println("[Success login] Client login - '#{login}', ip is #{@client_read.peeraddr[2]} success login")
       send_to_client("[Success login] Enter sign in/up or disconnect [in / up / disc]: ")
     end
 
@@ -168,7 +168,7 @@ class ServerEngine
           end
         end
       end
-      print "[Success registration] Client login - '#{login}', ip is #{@client_read.peeraddr[2]} success registred\n"
+      println("[Success registration] Client login - '#{login}', ip is #{@client_read.peeraddr[2]} success registred")
       send_to_client("[Success registration] Enter sign in/up or disconnect [in / up / disc]: ")
     end
 
