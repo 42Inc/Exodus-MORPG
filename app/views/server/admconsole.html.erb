@@ -1,13 +1,38 @@
-<HTML>
-  <HEAD>
-    <TITLE>Server:Admin</TITLE>
-  </HEAD>
-  <BODY>
-    <H2 align="center" >
-      <FONT size=16 face="Times New Roman" color="green"> Admin Console </FONT>
-    <H2>
-    <FORM name="login" align="center">
-    <P align="center"><INPUT type="text" size="40"></P>
-    </FORM>
-  </BODY>
-</HTML>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Server:Admin</title>
+  </head>
+  <body bgcolor="black">
+    <form name="Menu" align="left">
+      <a href="/">
+        <font size="2" face="Times New Roman" color="green"> Main page </font>
+      </a>
+      <font size="2" face="Times New Roman" color="purple"> -> Admin Console </font>
+    </form>
+    <h2 align="center" >
+      <font size="6" face="Times New Roman" color="green"> Admin Console </font>
+    <h2>
+    <form name="login" align="center">
+      <table align="center">
+        <tr>
+          <td>
+            <font size="4" face="Times New Roman" color="white"> Login </font>
+            <input type="text" size="20">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <form name="client info" align="left">
+              <font size="4" face="Times New Roman" color="white"> Your ip : <%= @r_ip %> </font>
+              <br>
+              <font size="4" face="Times New Roman" color="white"> port : <%= @r_port %> </font>
+            </form>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+
+  </body>
+</html>

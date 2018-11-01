@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Server:Main</title>
+  </head>
+  <script>
+    window.onload = function(){
+      window.setInterval(function(){
+        var now = new Date();
+        var clock = document.getElementById("clock");
+        clock.innerHTML = now.toLocaleTimeString();
+      }, 1000);
+    };
+  </script>
+  <body bgcolor="black">
+    <table align="center" border=1 width="100%">
+      <tr>
+        <td width="50%">
+          <form name="Menu" align="left">
+            <font size="2" face="Times New Roman" color="green"> Main page </font>
+            <br>
+            <A href="/server/admconsole">
+              <font size="2" face="Times New Roman" color="purple"> Admin Console </font>
+            </A>
+          </form>
+        </td>
+        <td width="50%">
+          <form name="Time" align="center">
+            <div id="clock" color="green"></div>
+          </form>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <h2 align="center" >
+      <font size="8" face="Times New Roman" color="blue"> Exotus-MORPG </font>
+    </h2>
+    <form name="login" align="center">
+      <p align="center">
+        <a href="/server/info">
+          <font size="6" face="Times New Roman" color="green"> Server Info </font>
+        </a>
+      </p>
+      <br>
+      <p align="center">
+        <font size="4" face="Times New Roman" color="red"> Coming soon </font>
+      </p>
+    </form>
+  </body>
+</html>
