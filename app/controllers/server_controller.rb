@@ -4,9 +4,13 @@ class ServerController < ApplicationController
       @controller = "Server"
       @page = "Default"
     end
-    
+
     def info
       @page = "Info"
+    end
+
+    def aboutgame
+      @page = "About"
     end
 
     def mainpage
