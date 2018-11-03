@@ -5,6 +5,10 @@ class ServerController < ApplicationController
       @page = "Default"
     end
 
+    def server
+      @page = "Server"
+    end
+
     def info
       @page = "Info"
     end
@@ -19,7 +23,5 @@ class ServerController < ApplicationController
 
     def admconsole
       @page = "Admin"
-      @r_ip = request.remote_ip
-      @r_port = request.port
     end
 end

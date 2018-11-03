@@ -5,10 +5,15 @@
   </head>
   <body bgcolor="black">
     <form name="Menu" align="left">
-      <a href="/">
-        <font size="2" face="Times New Roman" color="green"> Main page </font>
-      </a>
-      <font size="2" face="Times New Roman" color="purple"> -> Server info </font>
+      <font size="4" face="Times New Roman" color="green">
+        <%= link_to "Main page", :controller => "server", :action => "mainpage" %>
+      </font>
+      <font size="4" face="Times New Roman" color="green">-></font>
+      <font size="4" face="Times New Roman" color="green">
+        <%= link_to "Server", :controller => "server", :action => "server" %>
+      </font>
+      <font size="4" face="Times New Roman" color="green">-></font>
+      <font size="4" face="Times New Roman" color="purple"> Server info </font>
     </form>
 
     <h2 align="center" >

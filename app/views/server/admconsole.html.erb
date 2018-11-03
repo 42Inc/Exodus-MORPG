@@ -5,10 +5,15 @@
   </head>
   <body bgcolor="black">
     <form name="Menu" align="left">
-      <a href="/">
-        <font size="2" face="Times New Roman" color="green"> Main page </font>
-      </a>
-      <font size="2" face="Times New Roman" color="purple"> -> Admin Console </font>
+      <font size="4" face="Times New Roman" color="green">
+        <%= link_to "Main page", :controller => "server", :action => "mainpage" %>
+      </font>
+      <font size="4" face="Times New Roman" color="green">-></font>
+      <font size="4" face="Times New Roman" color="green">
+        <%= link_to "Server", :controller => "server", :action => "server" %>
+      </font>
+      <font size="4" face="Times New Roman" color="green">-></font>
+      <font size="4" face="Times New Roman" color="purple"> Admin Console </font>
     </form>
     <h2 align="center" >
       <font size="6" face="Times New Roman" color="green"> Admin Console </font>
@@ -24,9 +29,9 @@
         <tr>
           <td>
             <form name="client info" align="left">
-              <font size="4" face="Times New Roman" color="white"> Your ip : <%= @r_ip %> </font>
+              <font size="4" face="Times New Roman" color="white"> Your ip : <%= request.remote_ip %> </font>
               <br>
-              <font size="4" face="Times New Roman" color="white"> port : <%= @r_port %> </font>
+              <font size="4" face="Times New Roman" color="white"> port : <%= request.port %> </font>
             </form>
           </td>
         </tr>
