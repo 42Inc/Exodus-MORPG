@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Server:Admin</title>
+    <title><%= @controller %> : <%= @page %></title>
   </head>
-  <body bgcolor="black">
-    <form name="Menu" align="left">
+  <body bgcolor= <%= @bgcolor %>>
+
+    <form name="Navigation_menu" align="left">
       <font size="4" face="Times New Roman" color="green">
-        <%= link_to "Main page", :controller => "server", :action => "mainpage" %>
-      </font>
-      <font size="4" face="Times New Roman" color="green">-></font>
-      <font size="4" face="Times New Roman" color="green">
-        <%= link_to "Server", :controller => "server", :action => "server" %>
-      </font>
-      <font size="4" face="Times New Roman" color="green">-></font>
-      <font size="4" face="Times New Roman" color="purple"> Admin Console </font>
+        <%- @links_navigation_menu.each_with_index do |value, index|%>
+          <%- if (index % 3 == 0)%>
+            <font size="4" face="Times New Roman">
+              <%= link_to value, :controller => @links_navigation_menu[index + 1], :action =>  @links_navigation_menu[index + 2] %>
+            </font>
+            <font size="4" face="Times New Roman" color="green">-></font>
+          <%- end %>
+        <%- end %>
+        <font size="4" face="Times New Roman" color="gold"> <%= @page %> </font>
     </form>
+
     <h2 align="center" >
       <font size="6" face="Times New Roman" color="green"> Admin Console </font>
     <h2>
+
     <form name="login" align="center">
       <table align="center">
         <tr>
@@ -37,7 +41,6 @@
         </tr>
       </table>
     </form>
-
 
   </body>
 </html>
