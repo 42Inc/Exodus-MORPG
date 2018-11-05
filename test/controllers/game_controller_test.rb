@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class GameControllerTest < ActionDispatch::IntegrationTest
-  test "should get aboutgame" do
-    get game_aboutgame_url
+  test "should get about" do
+    get game_about_url
     assert_response :success
   end
 
