@@ -1,5 +1,9 @@
 language: ruby
 rvm:
-- 2.5.3
+  - 2.5.3
+branches:
+  only:
+    - master
+    - Exo-dev
 script:
-- ./bin/rake test
+  - ./bin/rake test
