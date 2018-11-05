@@ -26,7 +26,8 @@ class ServerController < ApplicationController
     def main
       @page = "Main"
       @links_main_menu = ["Server", "server", "server",
-                          "Game", "game", "game"]
+                          "Game", "game", "game",
+                          "Sign up", "users", "new"]
     end
 
     def admconsole
