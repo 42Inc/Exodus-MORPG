@@ -1,46 +1,38 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= @controller %> : <%= @page %></title>
-  </head>
-  <body bgcolor= <%= @bgcolor %>>
+<%- provide(:titlepage, "#{@controller} : #{@page}") %>
+<%= render :template => "layouts/application" %>
+<form name="Navigation_menu" align="left">
+  <font size="4" face="Times New Roman" color="green">
+    <%- @links_navigation_menu.each_with_index do |value, index|%>
+      <%- if (index % 3 == 0)%>
+        <font size="4" face="Times New Roman">
+          <%= link_to value, :controller => @links_navigation_menu[index + 1], :action =>  @links_navigation_menu[index + 2] %>
+        </font>
+        <font size="4" face="Times New Roman" color="green">-></font>
+      <%- end %>
+    <%- end %>
+    <font size="4" face="Times New Roman" color="gold"> <%= @page %> </font>
+</form>
 
-    <form name="Navigation_menu" align="left">
-      <font size="4" face="Times New Roman" color="green">
-        <%- @links_navigation_menu.each_with_index do |value, index|%>
-          <%- if (index % 3 == 0)%>
-            <font size="4" face="Times New Roman">
-              <%= link_to value, :controller => @links_navigation_menu[index + 1], :action =>  @links_navigation_menu[index + 2] %>
-            </font>
-            <font size="4" face="Times New Roman" color="green">-></font>
-          <%- end %>
-        <%- end %>
-        <font size="4" face="Times New Roman" color="gold"> <%= @page %> </font>
-    </form>
+<h2 align="center" >
+  <font size="6" face="Times New Roman" color="green"> Admin Console </font>
+<h2>
 
-    <h2 align="center" >
-      <font size="6" face="Times New Roman" color="green"> Admin Console </font>
-    <h2>
-
-    <form name="login" align="center">
-      <table align="center">
-        <tr>
-          <td>
-            <font size="4" face="Times New Roman" color="white"> Login </font>
-            <input type="text" size="20">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <form name="client info" align="left">
-              <font size="4" face="Times New Roman" color="white"> Your ip : <%= request.remote_ip %> </font>
-              <br>
-              <font size="4" face="Times New Roman" color="white"> port : <%= request.port %> </font>
-            </form>
-          </td>
-        </tr>
-      </table>
-    </form>
-
-  </body>
-</html>
+<form name="login" align="center">
+  <table align="center">
+    <tr>
+      <td>
+        <font size="4" face="Times New Roman" color="white"> Login </font>
+        <input type="text" size="20">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <form name="client info" align="left">
+          <font size="4" face="Times New Roman" color="white"> Your ip : <%= request.remote_ip %> </font>
+          <br>
+          <font size="4" face="Times New Roman" color="white"> port : <%= request.port %> </font>
+        </form>
+      </td>
+    </tr>
+  </table>
+</form>

@@ -1,4 +1,5 @@
 class ServerController < ApplicationController
+  layout "application"
   public
     def initialize
       super
@@ -24,10 +25,10 @@ class ServerController < ApplicationController
     end
 
     def main
-      @page = "Main"
       @links_main_menu = ["Server", "server", "server",
                           "Game", "game", "game",
                           "Sign up", "users", "new"]
+      @page = "Main"
     end
 
     def admconsole
