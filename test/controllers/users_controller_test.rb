@@ -13,5 +13,4 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "Users : Users"
   end
 
-
 end
