@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     def create #POST
       @page = "Create"
       @user = User.new(params_for_user)
-      @links_navigation_menu = []
+      @links_navigation_menu = ["Main", "server", "main"]
       if @user.save
         redirect_to @user
       else

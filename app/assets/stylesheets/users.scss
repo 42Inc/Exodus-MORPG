@@ -8,3 +8,9 @@
     margin: 0 0 30px 0;
   }
 }
+
+.field_with_errors {
+  .form-control {
+    border-color: red;
+  }
+}
