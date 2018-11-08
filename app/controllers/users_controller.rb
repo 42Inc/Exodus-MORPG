@@ -14,6 +14,8 @@ class UsersController < ApplicationController
     def show
       @page = "User"
       @user = User.find(params[:id])
+      @links_navigation_menu = ["Main", "server", "main",
+                                "Users", "users", "index"]
     end
 
     def new
@@ -25,7 +27,8 @@ class UsersController < ApplicationController
 
     def index
       @page = "Users"
-      @links_main_menu = ["Sign up", "users", "new"]
+      @links_main_menu = ["Sign in", "sessions", "new",
+                          "Sign up", "users", "new",]
       @links_navigation_menu = ["Main", "server", "main"]
     end
 
@@ -34,6 +37,7 @@ class UsersController < ApplicationController
       @user = User.new(params_for_user)
       @links_navigation_menu = ["Main", "server", "main"]
       if @user.save
+        log_in @user
         flash[:success] = "Success!"
         redirect_to @user
       else
