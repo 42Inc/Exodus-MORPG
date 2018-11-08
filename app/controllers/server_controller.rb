@@ -37,4 +37,5 @@ class ServerController < ApplicationController
                                 "Server", "server", "server"]
       @page = "Admin"
     end
+
 end

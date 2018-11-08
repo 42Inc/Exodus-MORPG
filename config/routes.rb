@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/server' => "server#server"
   get '/server/info' => "server#info"
   get '/server/admin' => "server#admin"
+  post '/server/admin' => 'server#create'
   get '/game' => "game#game"
   get '/game/about' => "game#about"
   resources :users

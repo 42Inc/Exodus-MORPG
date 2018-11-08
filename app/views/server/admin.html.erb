@@ -1,16 +1,25 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
 
-<h2 align="center" >
+<h1 align="center" >
   <font size="6" face="Times New Roman" color="green"> Admin </font>
-<h2>
+<h1>
 
 <form name="login" align="center">
   <table align="center">
     <tr>
       <td>
-        <font size="4" face="Times New Roman" color="white"> Login </font>
-        <input type="text" size="20">
+        <div class="row" align="center">
+          <div class="col-md-6 col-md-offset-3">
+            <% if logged_in? &&  current_user.name == "admin"%>
+              <font size="4" face="Times New Roman" color="gold">
+                User: <%= current_user.name %>
+              </font>
+            <% else %>
+              <%= link_to "Log in", '/login' %>
+            <% end %>
+          </div>
+        </div>
       </td>
     </tr>
     <tr>
