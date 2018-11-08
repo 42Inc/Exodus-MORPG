@@ -19,7 +19,7 @@ class ServerControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "Server : Main"
   end
 
-  test "should get admconsole" do
+  test "should get admin" do
     get '/server/admconsole'
     assert_response :success
     assert_select "title", "Server : Admin"
