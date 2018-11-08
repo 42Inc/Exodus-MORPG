@@ -5,6 +5,10 @@ class UsersController < ApplicationController
       super
       @controller = "Users"
       @page = "Default"
+      #link_name, link_controller, link_action
+      @links_main_menu = []
+      #link_name, link_controller, link_action
+      @links_navigation_menu = []
     end
 
     def show
@@ -15,15 +19,20 @@ class UsersController < ApplicationController
     def new
       @page = "New"
       @user = User.new
+      @links_navigation_menu = ["Main", "server", "main",
+                                "Users", "users", "index"]
     end
 
     def index
       @page = "Users"
+      @links_main_menu = ["Sign up", "users", "new"]
+      @links_navigation_menu = ["Main", "server", "main"]
     end
 
-    def create
+    def create #POST
       @page = "Create"
       @user = User.new(params_for_user)
+      @links_navigation_menu = []
       if @user.save
         redirect_to @user
       else
@@ -35,11 +44,11 @@ class UsersController < ApplicationController
       @page = "Edit"
     end
 
-    def update
+    def update #PATCH
       @page = "Update"
     end
 
-    def destroy
+    def destroy #DELEYE
       @page = "Delete"
     end
 

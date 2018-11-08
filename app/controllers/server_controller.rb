@@ -27,7 +27,8 @@ class ServerController < ApplicationController
     def main
       @links_main_menu = ["Server", "server", "server",
                           "Game", "game", "game",
-                          "Sign up", "users", "new"]
+                          "Users", "users", "index"]
+      @links_navigation_menu = []
       @page = "Main"
     end
 

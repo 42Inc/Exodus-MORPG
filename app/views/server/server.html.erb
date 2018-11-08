@@ -1,16 +1,5 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
-<form name="Navigation_menu" align="left">
-  <%- @links_navigation_menu.each_with_index do |value, index|%>
-    <%- if (index % 3 == 0)%>
-      <font size="4" face="Times New Roman">
-        <%= link_to value, :controller => @links_navigation_menu[index + 1], :action =>  @links_navigation_menu[index + 2] %>
-      </font>
-      <font size="4" face="Times New Roman" color="green">-></font>
-    <%- end %>
-  <%- end %>
-  <font size="4" face="Times New Roman" color="gold"> <%= @page %> </font>
-</form>
 
 <form name="Main_menu" align="center">
   <%- @links_main_menu.each_with_index do |value, index|%>
