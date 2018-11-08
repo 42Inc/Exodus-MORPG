@@ -10,6 +10,13 @@
   </head>
 
   <body bgcolor=<%= @bgcolor %>>
+    <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>" align="center">
+          <font size="6" face="Times New Roman" color="green">
+            <%= message %>
+          </font>
+        </div>
+    <% end %>
     <form name="Navigation_menu" align="left">
       <%- @links_navigation_menu.each_with_index do |value, index|%>
         <%- if (index % 3 == 0)%>

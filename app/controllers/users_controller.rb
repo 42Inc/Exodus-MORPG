@@ -34,6 +34,7 @@ class UsersController < ApplicationController
       @user = User.new(params_for_user)
       @links_navigation_menu = ["Main", "server", "main"]
       if @user.save
+        flash[:success] = "Success!"
         redirect_to @user
       else
         render 'new'
