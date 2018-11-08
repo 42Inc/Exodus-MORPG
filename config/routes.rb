@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "server#main"
   get '/server' => "server#server"
   get '/server/info' => "server#info"
-  get '/server/admconsole' => "server#admconsole"
+  get '/server/admin' => "server#admin"
   get '/game' => "game#game"
   get '/game/about' => "game#about"
   resources :users

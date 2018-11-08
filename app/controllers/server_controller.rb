@@ -13,7 +13,7 @@ class ServerController < ApplicationController
 
     def server
       @links_main_menu = ["Server Info", "server", "info",
-                          "Admin Console", "server", "admconsole"]
+                          "Admin", "server", "admin"]
       @links_navigation_menu = ["Main", "server", "main"]
       @page = "Server"
     end
@@ -31,7 +31,7 @@ class ServerController < ApplicationController
       @page = "Main"
     end
 
-    def admconsole
+    def admin
       @links_navigation_menu = ["Main", "server", "main",
                                 "Server", "server", "server"]
       @page = "Admin"

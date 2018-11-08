@@ -20,7 +20,7 @@ class ServerControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get admconsole" do
-    get server_admconsole_url
+    get '/server/admin'
     assert_response :success
     assert_select "title", "Server : Admin"
   end
