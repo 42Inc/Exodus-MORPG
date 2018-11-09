@@ -38,4 +38,24 @@ class ServerController < ApplicationController
       @page = "Admin"
     end
 
+    def create
+      @links_navigation_menu = ["Main", "server", "main",
+                                "Server", "server", "server"]
+      @page = "Admin"
+      user = User.find_by(email: params[:session][:email].downcase)
+
+      if user && user.authenticate(params[:session][:password]) && user.adm == true
+        log_in user
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        redirect_to '/server/admin'
+      else
+        if (user && user.name != "")
+          flash.now[:danger] = "Invalid email/password combination or user #{user.name} is not admin"
+        else
+          flash.now[:danger] = "Invalid email/password combination"
+        end
+        render 'admin'
+      end
+    end
+
 end

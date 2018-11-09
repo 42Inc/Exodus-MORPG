@@ -3,33 +3,60 @@
 
 <h1 align="center" >
   <font size="6" face="Times New Roman" color="green"> Admin </font>
-<h1>
+</h1>
 
-<form name="login" align="center">
-  <table align="center">
-    <tr>
-      <td>
-        <div class="row" align="center">
-          <div class="col-md-6 col-md-offset-3">
-            <% if logged_in? &&  current_user.name == "admin"%>
+<table align="center">
+  <tr>
+    <td>
+      <div class="row" align="center">
+        <div class="col-md-6 col-md-offset-3" align="center">
+          <% if logged_in? %>
+            <% if current_user.adm == true %>
               <font size="4" face="Times New Roman" color="gold">
                 User: <%= current_user.name %>
               </font>
             <% else %>
-              <%= link_to "Log in", '/login' %>
+                <font size="4" face="Times New Roman" color="red">
+                  User <%= current_user.name %> is not admin
+                </font>
             <% end %>
-          </div>
+          <% else %>
+            <%= form_for(:session, url: "/server/admin") do |f| %>
+              <font size="4" face="Times New Roman" color="lime">
+                <%= f.label :email %>
+                <br><br>
+                <%= f.email_field :email, class: 'form-control' %>
+              </font>
+              <br><br>
+
+              <font size="4" face="Times New Roman" color="lime">
+                <%= f.label :password %>
+                <br><br>
+                <%= f.password_field :password, class: 'form-control' %>
+              </font>
+              <br><br>
+              <%= f.label :remember_me, class: "checkbox inline" do %>
+                <%= f.check_box :remember_me %>
+                  <font size="4" face="Times New Roman" color="lime">
+                    <span>Remember me on this computer</span>
+                  </font>
+              <% end %>
+              <br>
+
+              <%= f.submit "Log in", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <form name="client info" align="left">
-          <font size="4" face="Times New Roman" color="white"> Your ip : <%= request.remote_ip %> </font>
-          <br>
-          <font size="4" face="Times New Roman" color="white"> port : <%= request.port %> </font>
-        </form>
-      </td>
-    </tr>
-  </table>
-</form>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <form name="client info" align="left">
+        <font size="4" face="Times New Roman" color="white"> Your ip : <%= request.remote_ip %> </font>
+        <br>
+        <font size="4" face="Times New Roman" color="white"> port : <%= request.port %> </font>
+      </form>
+    </td>
+  </tr>
+</table>

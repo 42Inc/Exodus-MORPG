@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
     end
 
     def create
-      @page = "Create"
-      @links_navigation_menu = []
+      @page = "Login"
+      @links_navigation_menu = ["Main", "server", "main"]
       user = User.find_by(email: params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
         log_in user

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  attr_accessor :adm
   attr_accessor :name, :email
   public
     def initialize
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
       @page = "Create"
       @user = User.new(params_for_user)
       @links_navigation_menu = ["Main", "server", "main"]
+      @user.adm = false
       if @user.save
         log_in @user
         flash[:success] = "Success!"
