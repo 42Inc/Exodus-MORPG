@@ -36,7 +36,6 @@ class User < ApplicationRecord
   end
 
   # Возвращает true, если предоставленный токен совпадает с дайджестом.
-  # Возвращает true, если предоставленный токен совпадает с дайджестом.
   def authenticated?(remember_token)
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)

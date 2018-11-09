@@ -13,6 +13,9 @@ class SessionsController < ApplicationController
     def new
       @page = "Login"
       @links_navigation_menu = ["Main", "server", "main"]
+      if logged_in?
+        redirect_to current_user
+      end
     end
 
     def create
