@@ -30,11 +30,6 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-  # Забывает пользователя
-  def forget
-    update_attribute(:remember_digest, nil)
-  end
-
   # Возвращает true, если предоставленный токен совпадает с дайджестом.
   def authenticated?(remember_token)
     return false if remember_digest.nil?

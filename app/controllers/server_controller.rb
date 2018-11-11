@@ -46,7 +46,9 @@ class ServerController < ApplicationController
 
       if user && user.authenticate(params[:session][:password]) && user.adm == true
         log_in user
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        if params[:session][:remember_me] == '1'
+          remember(user)
+        end
         redirect_to '/server/admin'
       else
         if (user && user.name != "")

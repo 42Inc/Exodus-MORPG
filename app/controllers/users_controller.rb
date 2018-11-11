@@ -55,7 +55,7 @@ class UsersController < ApplicationController
       @page = "Update"
     end
 
-    def destroy #DELEYE
+    def destroy #DELETE
       @page = "Delete"
     end
 
