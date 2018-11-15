@@ -1,14 +1,20 @@
 module SessionsHelper
   # Осуществляет вход данного пользователя.
   def log_in(user)
-    reset_session
-    session[:user_id] = user.id
+    print("\nUpdate session!\n")
+    session[:user_id] = [user.id, Time.now.to_i]
   end
 
   # Возвращает пользователя, соответствующего remember-токену в куки.
   def current_user
     if (user_id = session[:user_id])
-      @current_user ||= User.find_by(id: user_id)
+      @current_user ||= User.find_by(id: user_id[0])
+      time_diff = Time.now.to_i - user_id[1]
+      if (time_diff > 30 * 60)
+        session.delete(:user_id)
+      else
+        log_in @current_user
+      end
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
       if user && user.authenticated?(cookies[:remember_token])
@@ -16,6 +22,7 @@ module SessionsHelper
         @current_user = user
       end
     end
+    return @current_user
   end
 
   # Возвращает true, если пользователь вошел, иначе false.
