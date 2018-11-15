@@ -27,32 +27,38 @@
       <tr>
         <td width="33%">
           <form name="Navigation_menu" align="left">
-            <%- @links_navigation_menu.each_with_index do |value, index|%>
-              <%- if (index % 3 == 0)%>
-                <font size="4" face="Times New Roman">
-                  <%= link_to value, :controller => @links_navigation_menu[index + 1], :action =>  @links_navigation_menu[index + 2] %>
-                </font>
-                <font size="4" face="Times New Roman" color="green">-></font>
+            <div align="left">
+              <%- @links_navigation_menu.each_with_index do |value, index|%>
+                <%- if (index % 3 == 0)%>
+                  <font size="4" face="Times New Roman">
+                    <%= link_to value, :controller => @links_navigation_menu[index + 1], :action =>  @links_navigation_menu[index + 2] %>
+                  </font>
+                  <font size="4" face="Times New Roman" color="green">-></font>
+                <%- end %>
               <%- end %>
-            <%- end %>
-            <font size="4" face="Times New Roman" color="gold"> <%= @page %> </font>
+              <font size="4" face="Times New Roman" color="gold"> <%= @page %> </font>
+            </div>
           </form>
         </td>
         <td width="34%">
           <form name="Time" align="center">
-            <div id="clock"></div>
+            <div id="clock" align="center"></div>
           </form>
         </td>
         <td width="33%">
           <form name="Current user" align="right">
               <% if logged_in? %>
-              <font size="4" face="Times New Roman" color="gold">
-                <%= link_to "User:", "/users/#{current_user.id}" %> <%= current_user.name %>
-                <br>
-                <%= link_to "Log out", '/logout', method: "delete" %>
-              </font>
+                <div align="right">
+                  <font size="4" face="Times New Roman" color="gold">
+                    <%= link_to "User:", "/users/#{current_user.id}" %> <%= current_user.name %>
+                    <br>
+                    <%= link_to "Log out", '/logout', method: "delete" %>
+                  </font>
+                </div>
               <% else %>
-                <%= link_to "Log in", '/login' %>
+                <div align="right">
+                  <%= link_to "Log in", '/login' %>
+                </div>
               <% end %>
           </form>
         </td>

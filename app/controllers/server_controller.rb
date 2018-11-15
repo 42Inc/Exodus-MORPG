@@ -43,7 +43,6 @@ class ServerController < ApplicationController
                                 "Server", "server", "server"]
       @page = "Admin"
       user = User.find_by(email: params[:session][:email].downcase)
-
       if user && user.authenticate(params[:session][:password]) && user.adm == true
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)

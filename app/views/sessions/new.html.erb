@@ -1,7 +1,6 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
 
-
 <div class="row" align="center">
   <div class="col-md-6 col-md-offset-3">
     <h1>
@@ -10,8 +9,8 @@
         <br>
       </font>
     </h1>
-    <%= form_for(:session, url: login_path) do |f| %>
 
+    <%= form_for(:session, url: '/login') do |f| %>
       <font size="4" face="Times New Roman" color="lime">
         <%= f.label :email %>
         <br><br>

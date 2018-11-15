@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     end
 
     def new
-      @page = "Login"
+      @page = "Log in"
       @links_navigation_menu = ["Main", "server", "main"]
       if logged_in?
         redirect_to current_user
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
     end
 
     def create
-      @page = "Login"
+      @page = "Log in"
       @links_navigation_menu = ["Main", "server", "main"]
       user = User.find_by(email: params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-      @page = "Destroy"
+      @page = "Log out"
       @links_navigation_menu = []
       log_out if logged_in?
       redirect_to root_url

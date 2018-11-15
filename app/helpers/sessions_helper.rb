@@ -1,6 +1,7 @@
 module SessionsHelper
   # Осуществляет вход данного пользователя.
   def log_in(user)
+    reset_session
     session[:user_id] = user.id
   end
 
@@ -21,7 +22,7 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
-  
+
   # Забывает постоянную сессии.
   def forget(user)
     user.forget
