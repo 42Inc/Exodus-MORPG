@@ -17,6 +17,9 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @links_navigation_menu = ["Main", "server", "main",
                                 "Users", "users", "index"]
+      if (@user == nil)
+        redirect_to index
+      end
     end
 
     def new

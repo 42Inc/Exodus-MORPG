@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
-  attr_accessor :remember_digest
   before_save { self.email = self.email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
 
@@ -34,5 +33,10 @@ class User < ApplicationRecord
   def authenticated?(remember_token)
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
+  # Забывает пользователя
+  def forget
+    update_attribute(:remember_digest, nil)
   end
 end
