@@ -3,35 +3,35 @@
 
 <div class="row" align="center">
   <div class="col-md-6 col-md-offset-3">
-    <font size="4" face="Times New Roman" color="gold">
+    <font size="4" face=<%= @face %> color="gold">
       <h1>
         Sign up
       </h1>
     </font>
     <%= form_for(@user) do |t| %>
       <%= render 'shared/error_messages' %>
-      <font size="4" face="Times New Roman" color="gold">
+      <font size="4" face=<%= @face %> color="gold">
         <%= t.label :name %>
         <br>
         <%= t.text_field :name, class: 'form-control' %>
       </font>
       <br>
 
-      <font size="4" face="Times New Roman" color="gold">
+      <font size="4" face=<%= @face %> color="gold">
         <%= t.label :email %>
         <br>
         <%= t.email_field :email, class: 'form-control' %>
       </font>
       <br>
 
-      <font size="4" face="Times New Roman" color="gold">
+      <font size="4" face=<%= @face %> color="gold">
         <%= t.label :password %>
         <br>
         <%= t.password_field :password, class: 'form-control' %>
       </font>
       <br>
 
-      <font size="4" face="Times New Roman" color="gold">
+      <font size="4" face=<%= @face %> color="gold">
         <%= t.label :password_confirmation, "Confirmation" %>
         <br>
         <%= t.password_field :password_confirmation, class: 'form-control' %>

@@ -5,7 +5,7 @@
   <%- @links_main_menu.each_with_index do |value, index|%>
     <%- if (index % 3 == 0)%>
       <p align="center"  style="margin: 1px;">
-        <font size="6" face="Times New Roman">
+        <font size="6" face=<%= @face %>>
           <%= link_to value, :controller => @links_main_menu[index + 1], :action =>  @links_main_menu[index + 2] %>
         </font>
       </p>

@@ -1,7 +1,7 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
 <br>
-<font size="4" face="Times New Roman" color="gold">
+<font size="4" face=<%= @face %> color="gold">
   User: <%= @user.name %>
   <br>
   E-mail: <%= @user.email %>

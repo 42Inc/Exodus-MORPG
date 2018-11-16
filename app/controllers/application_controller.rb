@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
     @bgcolor = "black"
     @controller = "Default"
     @page = "Default"
+    @face = "Times New Roman"
     #link_name, link_controller, link_action
     @links_main_menu = []
     #link_name, link_controller, link_action

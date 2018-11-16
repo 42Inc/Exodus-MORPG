@@ -4,7 +4,7 @@
   <tr>
     <td width="50%">
       <form name="Navigation_menu" align="left">
-        <font size="4" face="Times New Roman" color="purple">
+        <font size="4" face=<%= @face %> color="purple">
           <%= link_to "Admin", :controller => "server", :action => "admin" %>
         </font>
       </form>
@@ -20,14 +20,14 @@
 <br>
 
 <h2 align="center" >
-  <font size="8" face="Times New Roman" color="blue"> Exotus-MORPG </font>
+  <font size="8" face=<%= @face %> color="blue"> Exotus-MORPG </font>
 </h2>
 
 <form name="Main_menu" align="center">
   <%- @links_main_menu.each_with_index do |value, index|%>
     <%- if (index % 3 == 0)%>
       <p align="center"  style="margin: 1px;">
-        <font size="6" face="Times New Roman">
+        <font size="6" face=<%= @face %>>
           <%= link_to value, :controller => @links_main_menu[index + 1], :action =>  @links_main_menu[index + 2] %>
         </font>
       </p>
@@ -37,6 +37,6 @@
   <br>
 
   <p align="center">
-    <font size="4" face="Times New Roman" color="red"> Coming soon </font>
+    <font size="4" face=<%= @face %> color="red"> Coming soon </font>
   </p>
 </form>

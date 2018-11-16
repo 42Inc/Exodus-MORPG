@@ -2,7 +2,7 @@
 <%= render :template => "layouts/application" %>
 
 <h1 align="center" >
-  <font size="6" face="Times New Roman" color="green"> Admin </font>
+  <font size="6" face=<%= @face %> color="green"> Admin </font>
 </h1>
 
 <table align="center">
@@ -13,27 +13,27 @@
           <% if logged_in? %>
             <% if current_user.adm == true %>
              <div align="center">
-                <font size="4" face="Times New Roman" color="gold">
+                <font size="4" face=<%= @face %> color="gold">
                   User: <%= current_user.name %>
                </font>
               </div>
             <% else %>
               <div align="center">
-                <font size="4" face="Times New Roman" color="red">
+                <font size="4" face=<%= @face %> color="red">
                   User <%= current_user.name %> is not admin
                 </font>
               </div>
             <% end %>
           <% else %>
             <%= form_for(:session, url: "/server/admin") do |f| %>
-              <font size="4" face="Times New Roman" color="lime">
+              <font size="4" face=<%= @face %> color="lime">
                 <%= f.label :email %>
                 <br><br>
                 <%= f.email_field :email, class: 'form-control' %>
               </font>
               <br><br>
 
-              <font size="4" face="Times New Roman" color="lime">
+              <font size="4" face=<%= @face %> color="lime">
                 <%= f.label :password %>
                 <br><br>
                 <%= f.password_field :password, class: 'form-control' %>
@@ -41,7 +41,7 @@
               <br><br>
               <%= f.label :remember_me, class: "checkbox inline" do %>
                 <%= f.check_box :remember_me %>
-                  <font size="4" face="Times New Roman" color="lime">
+                  <font size="4" face=<%= @face %> color="lime">
                     <span>Remember me on this computer</span>
                   </font>
               <% end %>
@@ -58,9 +58,9 @@
     <td>
       <form name="client info" align="center">
         <div align="center">
-          <font size="4" face="Times New Roman" color="white"> Your ip : <%= request.remote_ip %> </font>
+          <font size="4" face=<%= @face %> color="white"> Your ip : <%= request.remote_ip %> </font>
           <br>
-          <font size="4" face="Times New Roman" color="white"> port : <%= request.port %> </font>
+          <font size="4" face=<%= @face %> color="white"> port : <%= request.port %> </font>
         </div>
       </form>
     </td>
@@ -72,20 +72,20 @@
       <td width="33%">
         <form name="adm_users" align="center">
           <div align="left">
-            <font size="4" face="Times New Roman" color="white"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
+            <font size="4" face=<%= @face %> color="white"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
             <br>
             <% User.ids.each_with_index do |value,index| %>
               <% user = User.find_by(id: value)%>
               <table border="1" width="100%">
                 <tr>
                   <td width="50%">
-                    <font size="4" face="Times New Roman" color="lightblue"> User&nbspid&nbsp: <%= user.id %> </font>
+                    <font size="4" face=<%= @face %> color="lightblue"> User&nbspid&nbsp: <%= user.id %> </font>
                     <br>
-                    <font size="4" face="Times New Roman" color="lightblue"> User&nbspname&nbsp: <%= user.name %> </font>
+                    <font size="4" face=<%= @face %> color="lightblue"> User&nbspname&nbsp: <%= user.name %> </font>
                     <br>
-                    <font size="4" face="Times New Roman" color="lightblue"> User&nbspemail&nbsp: <%= user.email %> </font>
+                    <font size="4" face=<%= @face %> color="lightblue"> User&nbspemail&nbsp: <%= user.email %> </font>
                     <br>
-                    <font size="4" face="Times New Roman" color="lightblue"> User&nbspadm&nbsp: <%= user.adm %> </font>
+                    <font size="4" face=<%= @face %> color="lightblue"> User&nbspadm&nbsp: <%= user.adm %> </font>
                     <br>
                   </td>
                   <td width="50%"></td>
