@@ -25,4 +25,28 @@ class ServerControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "Server : Admin"
   end
 
+  test "should get 404 [0]" do
+    get '/server/notfound'
+    assert_response :success
+    assert_select "title", "Server : 404"
+  end
+
+  test "should get 404 [1]" do
+    get '/invalid-path'
+    assert_response :success
+    assert_select "title", "Server : 404"
+  end
+
+  test "should get 404 [2]" do
+    get '/invalid/path'
+    assert_response :success
+    assert_select "title", "Server : 404"
+  end
+
+  test "should get 404 [3]" do
+    get '/server/invalid'
+    assert_response :success
+    assert_select "title", "Server : 404"
+  end
+
 end
