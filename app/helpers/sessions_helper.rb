@@ -1,7 +1,8 @@
 module SessionsHelper
+  $time_to_disconnect = 1800
   # Осуществляет вход данного пользователя.
   def log_in(user)
-    print("\nUpdate session!\n")
+#    print("\nUpdate session!\n")
     session[:user_id] = [user.id, Time.now.to_i]
   end
 
@@ -10,7 +11,7 @@ module SessionsHelper
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id[0])
       time_diff = Time.now.to_i - user_id[1]
-      if (time_diff > 30 * 60)
+      if (time_diff > $time_to_disconnect)
         session.delete(:user_id)
       else
         log_in @current_user

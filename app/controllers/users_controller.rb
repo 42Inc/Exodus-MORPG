@@ -14,11 +14,11 @@ class UsersController < ApplicationController
 
     def show
       @page = "User"
-      @user = User.find(params[:id])
+      @user = User.find_by(id: params[:id])
       @links_navigation_menu = ["Main", "server", "main",
                                 "Users", "users", "index"]
-      if (@user == nil)
-        redirect_to index
+      if (@user == nil || @user != current_user)
+        redirect_to '/users'
       end
     end
 

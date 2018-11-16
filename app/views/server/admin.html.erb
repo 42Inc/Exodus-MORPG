@@ -12,13 +12,17 @@
         <div class="col-md-6 col-md-offset-3" align="center">
           <% if logged_in? %>
             <% if current_user.adm == true %>
-              <font size="4" face="Times New Roman" color="gold">
-                User: <%= current_user.name %>
-              </font>
+             <div align="center">
+                <font size="4" face="Times New Roman" color="gold">
+                  User: <%= current_user.name %>
+               </font>
+              </div>
             <% else %>
+              <div align="center">
                 <font size="4" face="Times New Roman" color="red">
                   User <%= current_user.name %> is not admin
                 </font>
+              </div>
             <% end %>
           <% else %>
             <%= form_for(:session, url: "/server/admin") do |f| %>
@@ -52,11 +56,49 @@
   </tr>
   <tr>
     <td>
-      <form name="client info" align="left">
-        <font size="4" face="Times New Roman" color="white"> Your ip : <%= request.remote_ip %> </font>
-        <br>
-        <font size="4" face="Times New Roman" color="white"> port : <%= request.port %> </font>
+      <form name="client info" align="center">
+        <div align="center">
+          <font size="4" face="Times New Roman" color="white"> Your ip : <%= request.remote_ip %> </font>
+          <br>
+          <font size="4" face="Times New Roman" color="white"> port : <%= request.port %> </font>
+        </div>
       </form>
     </td>
   </tr>
 </table>
+<% if logged_in? && current_user.adm == true %>
+  <table border="1" width="100%">
+    <tr>
+      <td width="33%">
+        <form name="adm_users" align="center">
+          <div align="left">
+            <font size="4" face="Times New Roman" color="white"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
+            <br>
+            <% User.ids.each_with_index do |value,index| %>
+              <% user = User.find_by(id: value)%>
+              <table border="1" width="100%">
+                <tr>
+                  <td width="50%">
+                    <font size="4" face="Times New Roman" color="lightblue"> Users&nbspid&nbsp: <%= user.id %> </font>
+                    <br>
+                    <font size="4" face="Times New Roman" color="lightblue"> Users&nbspname&nbsp: <%= user.name %> </font>
+                    <br>
+                    <font size="4" face="Times New Roman" color="lightblue"> Users&nbspemail&nbsp: <%= user.email %> </font>
+                    <br>
+                    <font size="4" face="Times New Roman" color="lightblue"> Users&nbspadm&nbsp: <%= user.adm %> </font>
+                    <br>
+                  </td>
+                  <td width="50%"></td>
+                </tr>
+              </table>
+            <% end %>
+          </div>
+        </form>
+      </td>
+      <td width="34%">
+      </td>
+      <td width="33%">
+      </td>
+    </tr>
+  </table>
+<% end %>
