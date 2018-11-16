@@ -57,4 +57,12 @@ class ServerController < ApplicationController
       end
     end
 
+    def notfound
+      @links_navigation_menu = ["Main", "server", "main",
+                                "Server", "server", "server"]
+      @page = "404"
+      rescue ActiveRecord::RecordNotFound
+      render 404
+    end
+
 end
