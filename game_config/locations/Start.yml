@@ -1,0 +1,7 @@
+location: Start
+npc:
+  - NPC_1
+  - NPC_2
+
+doors:
+  - Room_1

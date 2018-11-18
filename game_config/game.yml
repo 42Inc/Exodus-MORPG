@@ -1,0 +1,5 @@
+game: Exodus
+locations:
+  - Start
+  - Room_1
+  - Room_2
