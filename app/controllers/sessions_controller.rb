@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   public
     def initialize
       super
-      @controller = "Users"
+      @controller = "Sessions"
       @page = "Default"
       #link_name, link_controller, link_action
       @links_main_menu = []
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     end
 
     def new
-      @page = "Log in"
+      @page = "New"
       @links_navigation_menu = ["Main", "server", "main"]
       if logged_in?
         redirect_to current_user
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
     end
 
     def create
-      @page = "Log in"
+      @page = "New"
       @links_navigation_menu = ["Main", "server", "main"]
       user = User.find_by(email: params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-      @page = "Log out"
+      @page = "Destroy"
       @links_navigation_menu = []
       log_out if logged_in?
       redirect_to root_url

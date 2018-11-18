@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     end
 
     def show
-      @page = "User"
+      @page = "Show"
       @user = User.find_by(id: params[:id])
       @links_navigation_menu = ["Main", "server", "main",
                                 "Users", "users", "index"]
@@ -30,14 +30,14 @@ class UsersController < ApplicationController
     end
 
     def index
-      @page = "Users"
+      @page = "Index"
       @links_main_menu = ["Sign in", "sessions", "new",
                           "Sign up", "users", "new",]
       @links_navigation_menu = ["Main", "server", "main"]
     end
 
     def create #POST
-      @page = "Create"
+      @page = "New"
       @user = User.new(params_for_user)
       @links_navigation_menu = ["Main", "server", "main"]
       @user.adm = false
