@@ -10,7 +10,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get users_path
     assert_response :success
-    assert_select "title", "Users : Users"
+    assert_select "title", "Users : Index"
   end
 
 end
