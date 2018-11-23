@@ -1,0 +1,12 @@
+location: Shtudgard
+npc:
+  - Brian
+  - Jlexa
+
+teleport:
+  - Casian
+
+mobs:
+  - Northern Goblin
+  - Ruin Spartoi
+  - Dragon of wind
