@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/server/admin' => 'server#create'
   get '/game' => "game#game"
   get '/game/about' => "game#about"
+  get '/game/gameprocess' => "game#gameprocess"
   resources :users
   get    '/login'   => 'sessions#new'
   post   '/login'   => 'sessions#create'

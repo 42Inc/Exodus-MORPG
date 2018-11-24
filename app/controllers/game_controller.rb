@@ -10,9 +10,16 @@ class GameController < ApplicationController
   end
 
   def game
-    @links_main_menu = ["About Game", "game", "about"]
+    @links_main_menu = ["Start", "game", "gameprocess",
+                        "About Game", "game", "about"]
     @links_navigation_menu = ["Main", "server", "main"]
     @page = "Game"
+  end
+
+  def gameprocess
+    @links_navigation_menu = ["Main", "server", "main",
+                              "Game", "game", "game"]
+    @page = "Gameprocess"
   end
 
   def about
