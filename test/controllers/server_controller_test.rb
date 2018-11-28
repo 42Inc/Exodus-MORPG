@@ -21,8 +21,7 @@ class ServerControllerTest < ActionDispatch::IntegrationTest
 
   test "should get admin" do
     get '/server/admin'
-    assert_response :success
-    assert_select "title", "Server : Admin"
+    assert_redirected_to '/server/notfound'
   end
 
   test "should get 404 [0]" do
