@@ -3,16 +3,20 @@
 <table align="center" border="1" width="100%">
   <tr>
     <td width="50%">
-      <form name="Navigation_menu" align="left">
-        <font size="4" face=<%= @face %> color="purple">
-          <%= link_to "Admin", :controller => "server", :action => "admin" %>
-        </font>
-      </form>
+      <% if logged_in? %>
+        <%- if current_user.adm == true %>
+          <form name="Adm_menu" align="left">
+            <font size="4" face=<%= @face %> color="purple">
+              <%= link_to "Admin", :controller => "server", :action => "admin" %>
+            </font>
+          </form>
+        <%- end %>
+      <%- end %>
     </td>
     <td width="50%">
-      <form name="Time" align="center">
-        <div id="clock"></div>
-      </form>
+      <div name="Ip" align="center">
+        <font size="4" face=<%= @face %> color="white"> Your ip : <%= request.remote_ip %> </font>
+      </div >
     </td>
   </tr>
 </table>

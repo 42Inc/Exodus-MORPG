@@ -10,46 +10,9 @@
     <td>
       <div class="row" align="center">
         <div class="col-md-6 col-md-offset-3" align="center">
-          <% if logged_in? %>
-            <% if current_user.adm == true %>
-             <div align="center">
-                <font size="4" face=<%= @face %> color="gold">
-                  User: <%= current_user.name %>
-               </font>
-              </div>
-            <% else %>
-              <div align="center">
-                <font size="4" face=<%= @face %> color="red">
-                  User <%= current_user.name %> is not admin
-                </font>
-              </div>
-            <% end %>
-          <% else %>
-            <%= form_for(:session, url: "/server/admin") do |f| %>
-              <font size="4" face=<%= @face %> color="lime">
-                <%= f.label :email %>
-                <br><br>
-                <%= f.email_field :email, class: 'form-control' %>
-              </font>
-              <br><br>
-
-              <font size="4" face=<%= @face %> color="lime">
-                <%= f.label :password %>
-                <br><br>
-                <%= f.password_field :password, class: 'form-control' %>
-              </font>
-              <br><br>
-              <%= f.label :remember_me, class: "checkbox inline" do %>
-                <%= f.check_box :remember_me %>
-                  <font size="4" face=<%= @face %> color="lime">
-                    <span>Remember me on this computer</span>
-                  </font>
-              <% end %>
-              <br>
-
-              <%= f.submit "Log in", class: "btn btn-primary" %>
-            <% end %>
-          <% end %>
+          <font size="4" face=<%= @face %> color="gold">
+            User: <%= current_user.name %>
+          </font>
         </div>
       </div>
     </td>
