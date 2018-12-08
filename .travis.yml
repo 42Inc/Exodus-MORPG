@@ -10,5 +10,5 @@ script:
   - ./run test
 
 before_script:
-  - ./bin/rake db:setup
   - psql -c "create role rails_user with createdb login password 'Qq!2345678';" -U postgres
+  - ./bin/rake db:setup
