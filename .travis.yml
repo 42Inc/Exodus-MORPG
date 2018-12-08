@@ -5,5 +5,10 @@ branches:
   only:
     - master
     - Exo-dev
+
 script:
-  - ./bin/rake test
+  - ./run test
+
+before_script:
+  - ./bin/rake db:setup
+  - psql -c "CREATE USER rails_user WITH PASSWORD 'Qq!2345678';" -U postgres
