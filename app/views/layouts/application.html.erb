@@ -80,7 +80,9 @@
           </td>
           <td width="50%">
             <div name="Ip" align="center">
-              <font size="4" face=<%= @face %> color="white"> Your ip : <%= request.remote_ip %> </font>
+              <font size="4" face=<%= @face %> color="lime"> Your ip : <%= request.remote_ip %> </font>
+              <br>
+              <font size="4" face=<%= @face %> color="red"> Current branch : <%= get_git_branch() %> </font>
             </div >
           </td>
         </tr>
