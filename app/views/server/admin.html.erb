@@ -19,44 +19,25 @@
   </tr>
   <tr>
     <td>
-      <form name="client info" align="center">
+      <form name="adm_info" align="center">
         <div align="center">
           <font size="4" face=<%= @face %> color="white"> Your ip : <%= request.remote_ip %> </font>
           <br>
           <font size="4" face=<%= @face %> color="white"> port : <%= request.port %> </font>
+          <br>
+          <font size="4" face=<%= @face %> color="white"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
         </div>
       </form>
     </td>
   </tr>
 </table>
+
 <% if logged_in? && current_user.adm == true %>
   <table border="1" width="100%">
     <tr>
       <td width="33%">
-        <form name="adm_users" align="center">
-          <div align="left">
-            <font size="4" face=<%= @face %> color="white"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
-            <br>
-            <% User.ids.each_with_index do |value,index| %>
-              <% user = User.find_by(id: value)%>
-              <table border="1" width="100%">
-                <tr>
-                  <td width="50%">
-                    <font size="4" face=<%= @face %> color="lightblue"> User&nbspid&nbsp: <%= user.id %> </font>
-                    <br>
-                    <font size="4" face=<%= @face %> color="lightblue"> User&nbspname&nbsp: <%= user.name %> </font>
-                    <br>
-                    <font size="4" face=<%= @face %> color="lightblue"> User&nbspemail&nbsp: <%= user.email %> </font>
-                    <br>
-                    <font size="4" face=<%= @face %> color="lightblue"> User&nbspadm&nbsp: <%= user.adm %> </font>
-                    <br>
-                  </td>
-                  <td width="50%"></td>
-                </tr>
-              </table>
-            <% end %>
-          </div>
-        </form>
+        <iframe name="adm_users_frame" src="admin/1" scrolling="yes" width="100%">
+        </iframe>
       </td>
       <td width="34%">
       </td>

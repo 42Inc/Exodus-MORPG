@@ -44,6 +44,14 @@ class ServerController < ApplicationController
       end
     end
 
+    def admin_iframes
+      if (params[:id] == "1")
+        render '/server/admin_users_list.html.erb'
+      else
+        render '/server/notfound'
+      end
+    end
+
     def notfound
       @links_navigation_menu = ["Main", "server", "main",
                                 "Server", "server", "server"]
