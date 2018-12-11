@@ -1,0 +1,11 @@
+location: Goddard
+
+npc:
+  - Gerald
+  - Fedor
+
+teleport:
+  - Bixon
+
+mobs:
+  - Hungry rat
