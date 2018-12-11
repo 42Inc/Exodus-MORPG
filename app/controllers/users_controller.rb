@@ -48,11 +48,11 @@ class UsersController < ApplicationController
           redirect_to @user
         else
           flash[:danger] = "Fail!"
-          render 'new'
+          redirect_to '/users/new'
         end
       else
         flash[:danger] = "Registration is not allowed!"
-        render 'new'
+        redirect_to '/users/new'
       end
     end
 
