@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/server' => "server#server"
   get '/server/info' => "server#info"
   get '/server/admin' => "server#admin"
+  get '/server/notfound' => 'server#notfound'
   get '/game' => "game#game"
   get '/game/about' => "game#about"
   get '/game/play' => "game#play"

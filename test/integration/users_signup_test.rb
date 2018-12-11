@@ -1,5 +1,5 @@
 require 'test_helper'
-
+$permit_registration = true
 class UsersSignupTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
@@ -8,7 +8,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test "invalid signup information" do
     get '/users/new'
     assert_no_difference("User.count") do
-
+      $permit_registration = true
       user_params =  { user: {
                               name: "",
                               email: "foo@invalid",

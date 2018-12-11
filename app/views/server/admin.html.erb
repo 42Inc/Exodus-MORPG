@@ -75,14 +75,42 @@
               <% end %>
             </td>
             <td width="33%">
+
               <%= form_for(:server, url: '/server/admin/posts/2') do |f| %>
                 <%= f.submit "Load game_conf", class: "btn btn-primary" %>
               <% end %>
             </td>
           </tr>
+          <tr>
+            <td width="100%">
+              <div align="center">
+              <%= form_for(:server, url: '/server/admin/posts/3') do %>
+                <font size="4" face=<%= @face %> color="lime">
+                  <%= text_field_tag(:val) %>
+                  <%= submit_tag "Load user by id" %>
+                </font>
+              <% end %>
+              </div>
+            </td>
+          </tr>
         </table>
       </td>
       <td width="34%">
+        <table border="1" width="100%">
+          <tr>
+            <td width="100%">
+              <% if $permit_registration == false %>
+                <%= form_for(:server, url: '/server/admin/posts/4') do |f| %>
+                  <%= f.submit "Allow reg", class: "btn btn-primary" %>
+                <% end %>
+              <% else %>
+                <%= form_for(:server, url: '/server/admin/posts/4') do |f| %>
+                  <%= f.submit "Deny reg", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
       </td>
       <td width="33%">
       </td>

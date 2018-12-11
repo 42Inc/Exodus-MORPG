@@ -7,10 +7,10 @@ class GameControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "Game : About"
   end
 
-  test "should get gameprocess" do
-    get '/game/gameprocess'
+  test "should get play" do
+    get '/game/play'
     assert_response :success
-    assert_select "title", "Game : Gameprocess"
+    assert_select "title", "Game : Play"
   end
 
 end
