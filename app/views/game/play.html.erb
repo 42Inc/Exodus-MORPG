@@ -1,0 +1,26 @@
+<%- provide(:titlepage, "#{@controller} : #{@page}") %>
+<%= render :template => "layouts/application" %>
+<div align="center">
+  <table border="1" width="50%">
+    <tr>
+      <td width="100%">
+        <div align="center">
+          <font size="6" face=<%= @face %> color="Gold"> Play </font>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="33%">
+      <iframe name="game_config_list" src="play/1" scrolling="yes" width="100%">
+      </iframe>
+    </td>
+    <td width="34%">
+    </td>
+    <td width="33%">
+    </td>
+  </tr>
+</table>

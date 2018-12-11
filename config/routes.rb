@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/server/admin' => "server#admin"
   get '/game' => "game#game"
   get '/game/about' => "game#about"
-  get '/game/gameprocess' => "game#gameprocess"
+  get '/game/play' => "game#play"
   get '/login'   => 'sessions#new'
 
   #resources
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   #iframe
   get '/server/admin/:id'   => 'server#admin_iframes'
+  get '/game/play/:id'   => 'game#game_iframes'
+
   #404
   get '/*permalink' => 'server#notfound'
 end

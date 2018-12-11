@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+require 'yaml'
 
 def println(string)
   STDOUT.print("#{string}\n")
@@ -20,4 +21,9 @@ def set_color(obj, color)
   elsif (color == "default")
     obj.print "\033[00m"
   end
+end
+
+def load_yml(filename)
+  _file = YAML.load_file(filename)
+  return _file
 end
