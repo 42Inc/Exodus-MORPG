@@ -13,16 +13,25 @@ Rails.application.routes.draw do
 
   #resources
   resources :users
-  #post
 
+  #post
   post   '/login'   => 'sessions#create'
 
   #delete
   delete '/logout'  => 'sessions#destroy'
 
   #iframe
-  get '/server/admin/:id'   => 'server#admin_iframes'
-  get '/game/play/:id'   => 'game#game_iframes'
+  get '/server/admin/iframes/:id'   => 'server#admin_iframes'
+  get '/game/play/iframes/:id'   => 'game#game_iframes'
+
+  #posts
+  post '/server/admin/posts/:id' => 'server#admin_posts'
+
+  #mask other
+  get '/server/admin/*permalink' => "server#admin"
+  get '/server/*permalink' => "server#main"
+  get '/users/*permalink' => "users#play"
+  get '/game/*permalink' => "game#game"
 
   #404
   get '/*permalink' => 'server#notfound'

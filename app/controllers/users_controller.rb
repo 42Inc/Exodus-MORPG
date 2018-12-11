@@ -41,11 +41,17 @@ class UsersController < ApplicationController
       @user = User.new(params_for_user)
       @links_navigation_menu = ["Main", "server", "main"]
       @user.adm = false
-      if @user.save
-        log_in @user
-        flash[:success] = "Success!"
-        redirect_to @user
+      if @permit_registration == true
+        if @user.save
+          log_in @user
+          flash[:success] = "Success!"
+          redirect_to @user
+        else
+          flash[:danger] = "Fail!"
+          render 'new'
+        end
       else
+        flash[:danger] = "Registration is not allowed!"
         render 'new'
       end
     end

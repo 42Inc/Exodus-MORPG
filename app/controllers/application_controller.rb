@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  include ApplicationHelper
+  include ServerHelper
   include SessionsHelper
+
   def initialize
     @bgcolor = "black"
     @controller = "Default"
@@ -10,5 +13,8 @@ class ApplicationController < ActionController::Base
     @links_main_menu = []
     #link_name, link_controller, link_action
     @links_navigation_menu = []
+    @permit_registration = false
+    @show_adm_menu = "layout"
+    @game_configuration = load_yml("game_config/game_configuration.yml")
   end
 end

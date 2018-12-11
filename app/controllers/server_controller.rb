@@ -9,6 +9,7 @@ class ServerController < ApplicationController
       @links_main_menu = []
       #link_name, link_controller, link_action
       @links_navigation_menu = []
+      @cur_view = get_admin_iframe()
     end
 
     def server
@@ -45,11 +46,27 @@ class ServerController < ApplicationController
     end
 
     def admin_iframes
-      if (params[:id] == "1")
+      if (params[:id] == "0")
+        render '/layouts/nothing.html.erb'
+      elsif (params[:id] == "1")
         render '/server/admin_users_list.html.erb'
+      elsif (params[:id] == "2")
+        @game_configuration = load_yml("game_config/game_configuration.yml")
+        render '/game/game_configuration_list.html.erb'
       else
         render '/server/notfound'
       end
+    end
+
+    def admin_posts
+      if (params[:id] == "1")
+        $view_list = "users_list"
+      elsif (params[:id] == "2")
+        $view_list = "game_conf"
+      else 
+        $view_list = "nothing"
+      end
+      redirect_to '/server/admin'
     end
 
     def notfound

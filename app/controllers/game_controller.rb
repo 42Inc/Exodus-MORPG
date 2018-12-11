@@ -7,7 +7,6 @@ class GameController < ApplicationController
     @links_main_menu = []
     #link_name, link_controller, link_action
     @links_navigation_menu = []
-    @game_configuration = load_yml("game_config/game_configuration.yml")
   end
 
   def game
@@ -21,7 +20,7 @@ class GameController < ApplicationController
     @links_navigation_menu = ["Main", "server", "main",
                               "Game", "game", "game"]
     @page = "Play"
-    println(@game_configuration)
+    @game_configuration = load_yml("game_config/game_configuration.yml")
   end
 
   def game_iframes
