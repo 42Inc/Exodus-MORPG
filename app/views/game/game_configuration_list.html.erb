@@ -1,22 +1,20 @@
 <form name="config_list" align="center">
   <div align="left">
-    <% if logged_in? %>
-      <table border="1" width="100%">
-        <tr>
-          <td width="100%">
-            <font size="4" face=<%= @face %> color="lightblue"> Game&nbsp: <%= @game_configuration[0]["game"] ? @game_configuration[0]["game"] : "" %> </font>
+    <table border="1" width="100%">
+      <tr>
+        <td width="100%">
+          <font size="4" face=<%= @face %> color="lightblue"> Game&nbsp: <%= @game_configuration[0]["game"] ? @game_configuration[0]["game"] : "" %> </font>
+          <br>
+          <% if @game_configuration[0]["locations"] != nil%>
+            <font size="4" face=<%= @face %> color="lightblue"> Locations&nbsp: </font>
             <br>
-            <% if @game_configuration[0]["locations"] != nil%>
-              <font size="4" face=<%= @face %> color="lightblue"> Locations&nbsp: </font>
+            <% @game_configuration[0]["locations"].each_with_index do |value,index| %>
+              <font size="4" face=<%= @face %> color="lightblue"> <%= " - #{value}" %> </font>
               <br>
-              <% @game_configuration[0]["locations"].each_with_index do |value,index| %>
-                <font size="4" face=<%= @face %> color="lightblue"> <%= " - #{value}" %> </font>
-                <br>
-              <% end %>
             <% end %>
-          </td>
-        </tr>
-      </table>
-    <% end %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
   </div>
 </form>
