@@ -1,29 +1,6 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
 
-<% if @show_adm_menu != "layout" %>
-  <table align="center" border="1" width="100%">
-    <tr>
-      <td width="50%">
-        <% if logged_in? %>
-          <%- if current_user.adm == true %>
-            <form name="Adm_menu" align="left">
-              <font size="4" face=<%= @face %> color="purple">
-                <%= link_to "Admin", :controller => "server", :action => "admin" %>
-              </font>
-            </form>
-          <%- end %>
-        <%- end %>
-      </td>
-      <td width="50%">
-        <div name="Ip" align="center">
-          <font size="4" face=<%= @face %> color="white"> Your ip : <%= request.remote_ip %> </font>
-        </div >
-      </td>
-    </tr>
-  </table>
-<% end %>
-
 <h1 align="center" >
   <font size="6" face=<%= @face %> color="green"> Admin </font>
 </h1>
@@ -44,11 +21,26 @@
     <td>
       <form name="adm_info" align="center">
         <div align="center">
-          <font size="4" face=<%= @face %> color="white"> Your ip : <%= request.remote_ip %> </font>
-          <br>
-          <font size="4" face=<%= @face %> color="white"> port : <%= request.port %> </font>
-          <br>
-          <font size="4" face=<%= @face %> color="white"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
+          <table border="1" width="100%">
+            <tr>
+              <td>
+                <font size="4" face=<%= @face %> color="lime"> Your ip : <%= request.remote_ip %> </font>
+              </td>
+              <td>
+                <font size="4" face=<%= @face %> color="lime"> port : <%= request.port %> </font>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <font size="4" face=<%= @face %> color="red"> Current branch : <%= get_git_branch() %> </font>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <font size="4" face=<%= @face %> color="orange"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
+            </td>
+          </tr>
+        </table>
         </div>
       </form>
     </td>
@@ -75,20 +67,35 @@
               <% end %>
             </td>
             <td width="33%">
-
               <%= form_for(:server, url: '/server/admin/posts/2') do |f| %>
                 <%= f.submit "Load game_conf", class: "btn btn-primary" %>
               <% end %>
             </td>
           </tr>
           <tr>
-            <td width="100%">
+            <td width="100%" colspan="3">
               <div align="center">
-              <%= form_for(:server, url: '/server/admin/posts/3') do %>
-                <font size="4" face=<%= @face %> color="lime">
-                  <%= text_field_tag(:val) %>
-                  <%= submit_tag "Load user by id" %>
-                </font>
+              <% if $view_list == "users_list" || $view_list == "user" %>
+                <%= form_for(:server, url: '/server/admin/posts/3') do %>
+                  <font size="4" face=<%= @face %> color="lime">
+                    <%= text_field_tag(:val) %>
+                    <%= submit_tag "Load user by id" %>
+                  </font>
+                <% end %>
+              <% elsif $view_list == "game_conf" || $view_list == "location" %>
+                <%= form_for(:server, url: '/server/admin/posts/3') do %>
+                  <font size="4" face=<%= @face %> color="lime">
+                    <%= text_field_tag(:val) %>
+                    <%= submit_tag "Load location" %>
+                  </font>
+                <% end %>
+              <% else %>
+                <%= form_for(:server, url: '/server/admin/posts/0') do %>
+                  <font size="4" face=<%= @face %> color="lime">
+                    <%= text_field_tag(:val) %>
+                    <%= submit_tag "button" %>
+                  </font>
+                <% end %>
               <% end %>
               </div>
             </td>
@@ -99,15 +106,17 @@
         <table border="1" width="100%">
           <tr>
             <td width="100%">
-              <% if $permit_registration == false %>
-                <%= form_for(:server, url: '/server/admin/posts/4') do |f| %>
-                  <%= f.submit "Allow reg", class: "btn btn-primary" %>
+              <div align="center">
+                <% if $permit_registration == false %>
+                  <%= form_for(:server, url: '/server/admin/posts/4') do |f| %>
+                    <%= f.submit "Allow reg", class: "btn btn-primary" %>
+                  <% end %>
+                <% else %>
+                  <%= form_for(:server, url: '/server/admin/posts/4') do |f| %>
+                    <%= f.submit "Deny reg", class: "btn btn-primary" %>
+                  <% end %>
                 <% end %>
-              <% else %>
-                <%= form_for(:server, url: '/server/admin/posts/4') do |f| %>
-                  <%= f.submit "Deny reg", class: "btn btn-primary" %>
-                <% end %>
-              <% end %>
+              </div>
             </td>
           </tr>
         </table>

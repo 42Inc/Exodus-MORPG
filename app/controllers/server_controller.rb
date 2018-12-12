@@ -68,12 +68,20 @@ class ServerController < ApplicationController
       elsif (params[:id] == "2")
         $view_list = "game_conf"
       elsif (params[:id] == "3")
-        $view_user_id = params[:val]
-        $view_list = "user"
+        if $view_list == "users_list" || $view_list == "user"
+          $view_user_id = params[:val]
+          $view_list = "user"
+        elsif $view_list == "game_conf" || $view_list == "location"
+          $view_location = params[:val]
+          $view_list = "location"
+        else
+          $view_list = "nothing"
+        end
       elsif (params[:id] == "4")
         $permit_registration = $permit_registration == true ? false : true
       else 
         $view_list = "nothing"
+        $view_location = "nothing"
       end
       redirect_to '/server/admin'
     end

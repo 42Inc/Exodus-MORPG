@@ -3,6 +3,7 @@ require_relative '../../lib/functions.rb'
 $permit_registration = false
 $view_list = "nothing"
 $view_user_id = 0
+$view_location = "nothing"
 
 module ApplicationHelper
   def get_git_branch
