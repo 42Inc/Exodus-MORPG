@@ -16,9 +16,10 @@
           </td>
         <% else %>
           <td width="100%">
-            <font size="4" face=<%= @face %> color="lightblue"> User&nbspid&nbsp: <%= $view_user_id %> </font>
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspid&nbsp: </font>
+            <font size="4" face=<%= @face %> color="green"> <%= $view_user_id %> </font>
             <br>
-            <font size="4" face=<%= @face %> color="lightblue"> Not found! </font>
+            <font size="4" face=<%= @face %> color="red"> Not found! </font>
           </td>
         <% end %>
       </tr>

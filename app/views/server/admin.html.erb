@@ -17,36 +17,7 @@
       </div>
     </td>
   </tr>
-  <tr>
-    <td>
-      <form name="adm_info" align="center">
-        <div align="center">
-          <table border="1" width="100%">
-            <tr>
-              <td>
-                <font size="4" face=<%= @face %> color="lime"> Your ip : <%= request.remote_ip %> </font>
-              </td>
-              <td>
-                <font size="4" face=<%= @face %> color="lime"> port : <%= request.port %> </font>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <font size="4" face=<%= @face %> color="red"> Current branch : <%= get_git_branch() %> </font>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <font size="4" face=<%= @face %> color="orange"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
-            </td>
-          </tr>
-        </table>
-        </div>
-      </form>
-    </td>
-  </tr>
 </table>
-
 
 <br>
 
@@ -75,14 +46,14 @@
           <tr>
             <td width="100%" colspan="3">
               <div align="center">
-              <% if $view_list == "users_list" || $view_list == "user" %>
+              <% if $view_list_1 == "users_list" || $view_list_1 == "user" %>
                 <%= form_for(:server, url: '/server/admin/posts/3') do %>
                   <font size="4" face=<%= @face %> color="lime">
                     <%= text_field_tag(:val) %>
                     <%= submit_tag "Load user by id" %>
                   </font>
                 <% end %>
-              <% elsif $view_list == "game_conf" || $view_list == "location" %>
+              <% elsif $view_list_1 == "game_conf" || $view_list_1 == "location" %>
                 <%= form_for(:server, url: '/server/admin/posts/3') do %>
                   <font size="4" face=<%= @face %> color="lime">
                     <%= text_field_tag(:val) %>
@@ -93,7 +64,7 @@
                 <%= form_for(:server, url: '/server/admin/posts/0') do %>
                   <font size="4" face=<%= @face %> color="lime">
                     <%= text_field_tag(:val) %>
-                    <%= submit_tag "button" %>
+                    <%= submit_tag "Nothing" %>
                   </font>
                 <% end %>
               <% end %>
@@ -126,12 +97,16 @@
     </tr>
     <tr>
       <td width="33%">
-        <iframe name="adm_users_frame" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe()}" %>>
+        <iframe name="adm_users_frame_1" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_1()}" %>>
         </iframe>
       </td>
       <td width="34%">
+        <iframe name="adm_users_frame_2" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_2()}" %>>
+        </iframe>
       </td>
       <td width="33%">
+        <iframe name="adm_users_frame_3" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_3()}" %>>
+        </iframe>
       </td>
     </tr>
   </table>

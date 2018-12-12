@@ -1,11 +1,13 @@
-location: Goddard
+---
 
-npc:
-  - Gerald
-  - Fedor
+- location: Goddard
 
-teleport:
-  - Bixon
+  npc:
+    - Gerald
+    - Fedor
 
-mobs:
-  - Hungry rat
+  teleport:
+    - Bixon
+
+  mobs:
+    - Hungry rat

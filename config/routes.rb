@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   delete '/logout'  => 'sessions#destroy'
 
   #iframe
-  get '/server/admin/iframes/:id'   => 'server#admin_iframes'
+  get '/server/admin/iframes_1/:id'   => 'server#admin_iframes_1'
+  get '/server/admin/iframes_2/:id'   => 'server#admin_iframes_2'
+  get '/server/admin/iframes_3/:id'   => 'server#admin_iframes_3'
   get '/game/play/iframes/:id'   => 'game#game_iframes'
 
   #posts

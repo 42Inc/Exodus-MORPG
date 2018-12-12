@@ -1,11 +1,13 @@
-location: Rune
-npc:
-  - Allenos
-  - Gerald
+---
 
-teleport:
-  - Belef
+- location: Rune
+  npc:
+    - Allenos
+    - Gerald
 
-mobs:
-  - Hell flower
-  - Sceleton archer
+  teleport:
+    - Belef
+
+  mobs:
+    - Hell flower
+    - Sceleton archer
