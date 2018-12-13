@@ -20,11 +20,11 @@ class GameController < ApplicationController
     @links_navigation_menu = ["Main", "server", "main",
                               "Game", "game", "game"]
     @page = "Play"
-    @game_configuration = load_yml("game_config/game_configuration.yml")
   end
 
-  def game_iframes
+  def game_iframes_1
     if (params[:id] == "1")
+      @game_configuration = load_yml("game_config/game_configuration.yml")
       render '/game/game_configuration_list.html.erb'
     else
       render '/server/notfound'

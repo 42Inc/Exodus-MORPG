@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get '/server/admin/iframes_1/:id'   => 'server#admin_iframes_1'
   get '/server/admin/iframes_2/:id'   => 'server#admin_iframes_2'
   get '/server/admin/iframes_3/:id'   => 'server#admin_iframes_3'
-  get '/game/play/iframes/:id'   => 'game#game_iframes'
+  get '/game/play/iframes_1/:id'   => 'game#game_iframes_1'
 
   #posts
   post '/server/admin/posts/:id' => 'server#admin_posts'
