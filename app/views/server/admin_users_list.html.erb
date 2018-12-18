@@ -1,6 +1,6 @@
 <form name="adm_users" align="center">
   <div align="left">
-    <% User.ids.each_with_index do |value,index| %>
+    <% User.ids.sort.each_with_index do |value,index| %>
       <% user = User.find_by(id: value) %>
       <table border="1" width="100%">
         <tr>

@@ -2,7 +2,16 @@
 <%= render :template => "layouts/application" %>
 <br>
 <font size="4" face=<%= @face %> color="gold">
-  User: <%= @user.name %>
-  <br>
-  E-mail: <%= @user.email %>
+  <% if logged_in? %> 
+    User: <%= @user.name %>
+    <br>
+    E-mail: <%= @user.email %>
+    <%- if current_user.adm == true %>
+      <form name="Adm_menu" align="left">
+        <font size="4" face=<%= @face %> color="purple">
+          <%= link_to "Admin", :controller => "server", :action => "admin" %>
+        </font>
+      </form>
+    <%- end %>
+  <%- end %>
 </font>

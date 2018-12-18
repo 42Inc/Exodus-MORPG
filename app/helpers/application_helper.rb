@@ -1,9 +1,10 @@
 require_relative '../../lib/functions.rb'
 
 $permit_registration = false
-$view_list_1 = "nothing"
-$view_user_id_1 = 0
-$view_location_1 = "nothing"
+$view_list_adm_iframe_1 = "nothing"
+$view_user_adm_iframe_id_1 = 0
+$view_location = "nothing"
+$show_adm_menu = "layout"
 
 module ApplicationHelper
   def get_git_branch

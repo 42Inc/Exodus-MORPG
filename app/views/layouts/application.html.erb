@@ -64,7 +64,8 @@
         </td>
       </tr>
     </table>
-    <% if @show_adm_menu == "layout" %>
+
+    <% if $show_adm_menu == "layout" || ($show_adm_menu == "default" && yield(:titlepage) == "Server : Main" ) %>
       <table align="center" border="1" width="100%">
         <tr>
           <td width="50%">
