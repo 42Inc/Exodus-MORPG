@@ -63,3 +63,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails-controller-testing'
 gem 'pg'
+gem 'semantic-ui-rails'

@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body bgcolor=<%= @bgcolor %>>
+  <body>
     <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>" align="center">
           <%- if message_type == "danger" %>
@@ -23,7 +23,7 @@
           <%- end %>
         </div>
     <% end %>
-    <table align="center" border="1" width="100%">
+    <table align="center" border="0" width="100%">
       <tr>
         <td width="33%">
           <form name="Navigation_menu" align="left">
@@ -40,11 +40,7 @@
             </div>
           </form>
         </td>
-        <td width="34%">
-          <form name="Time" align="center">
-            <div id="clock" align="center"></div>
-          </form>
-        </td>
+
         <td width="33%">
           <form name="Current user" align="right">
               <% if logged_in? %>
@@ -65,7 +61,7 @@
       </tr>
     </table>
     <% if @show_adm_menu == "layout" %>
-      <table align="center" border="1" width="100%">
+      <table align="center" border="0" width="100%">
         <tr>
           <td width="50%">
             <% if logged_in? %>

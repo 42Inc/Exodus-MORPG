@@ -1,20 +1,73 @@
-// Place all the styles related to the Sessions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-#session_remember_me {
-  width: auto;
-  margin-left: 0;
+.container{
+   max-width:300px;
+   width:200px;
+   margin:auto;
 }
 
-.checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
+.links{
+   font-size:24px;
+   font-weight:bolder;
+   text-transform:uppercase;
+   text-align:center;
+   line-height:1em;
+   white-space:nowrap;
+   width:100%;
+   transform:translate3D(0, 0, 0);
 }
 
+.link{
+   position:relative;
+   height:2em;
+   line-height:0.9em;
+   width:0%;
+   border-top:0.05em solid transparent;
+   transition:all 0.5s ease-in-out;
+}
+
+.link:hover, .link.demo{
+   border-top:0.05em solid GOLD;
+   cursor:pointer;
+   width:100%;
+}
+
+.link:after, .link:before{
+   content: attr(data-display);
+   position:absolute;
+   top:0em;
+   left:1em;
+   width:auto;
+   height:1em;
+   transform:translateY(-50%);
+   transition:all 0.5s ease-in-out;
+   overflow:hidden;
+   color:transparent;
+}
+
+
+.link:before{
+   text-shadow:0px 0.5em #FFF;
+   top:-0.45em;
+}
+
+.link:after{
+   top:0.5em;
+   text-shadow:0px -0.5em #FFF;
+
+}
+
+.link:hover:before,
+.link.demo:before{
+   text-shadow:0px 0.5em GOLD;
+   left:1.25em;
+}
+.link:hover:after,
+.link.demo:after{
+   text-shadow:0px -0.5em GOLD;
+   left:0.75em;
+}
+
+
+// Do not cross this line
 $frameCount: 10;
 $bubbleCount: 20;
 $step: 100/$frameCount;

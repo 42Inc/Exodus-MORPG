@@ -2,7 +2,7 @@
 <%= render :template => "layouts/application" %>
 
 <% if @show_adm_menu != "layout" %>
-  <table align="center" border="1" width="100%">
+  <table align="center" border="0" width="100%">
     <tr>
       <td width="50%">
         <% if logged_in? %>
@@ -23,25 +23,25 @@
     </tr>
   </table>
 <% end %>
-
-<h2 align="center" >
-  <font size="8" face=<%= @face %> color="blue"> Exodus-MORPG </font>
-</h2>
+<div class="three"><h1> Exodus-MORPG </h1></div>
+<div class="bubbles"></div>
 
 <form name="Main_menu" align="center">
   <%- @links_main_menu.each_with_index do |value, index|%>
     <%- if (index % 3 == 0)%>
-      <p align="center"  style="margin: 1px;">
-        <font size="6" face=<%= @face %>>
+    <div class="ui vertical pointing menu">
+      <a class="item">
+        <font size="8" face=<%= @face %>>
           <%= link_to value, :controller => @links_main_menu[index + 1], :action =>  @links_main_menu[index + 2] %>
         </font>
-      </p>
+      </a>
+    </div>
     <%- end %>
   <%- end %>
 
   <br>
 
   <p align="center">
-    <font size="4" face=<%= @face %> color="red"> Coming soon </font>
+    <font size="4" face=<%= @face %> color="yellow"> Coming soon </font>
   </p>
 </form>
