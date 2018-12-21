@@ -1,6 +1,6 @@
-<form name="adm_users" align="center">
+<form name="adm_user" align="center">
   <div align="left">
-      <% user = User.find_by(id: $view_user_id) %>
+      <% user = User.find_by(id: $view_user_adm_iframe_id_1) %>
       <table border="1" width="100%">
       <tr>
         <% if  user != nil %>
@@ -17,7 +17,7 @@
         <% else %>
           <td width="100%">
             <font size="4" face=<%= @face %> color="lightblue"> User&nbspid&nbsp: </font>
-            <font size="4" face=<%= @face %> color="green"> <%= $view_user_id %> </font>
+            <font size="4" face=<%= @face %> color="green"> <%= $view_user_adm_iframe_id_1 %> </font>
             <br>
             <font size="4" face=<%= @face %> color="red"> Not found! </font>
           </td>

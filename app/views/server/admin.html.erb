@@ -32,47 +32,51 @@
                 <%= f.submit "Clear", class: "btn btn-primary" %>
               <% end %>
             </td>
+
             <td width="34%">
               <%= form_for(:server, url: '/server/admin/posts/1') do |f| %>
                 <%= f.submit "Load users_list", class: "btn btn-primary" %>
               <% end %>
             </td>
+
             <td width="33%">
               <%= form_for(:server, url: '/server/admin/posts/2') do |f| %>
                 <%= f.submit "Load game_conf", class: "btn btn-primary" %>
               <% end %>
             </td>
           </tr>
+
           <tr>
             <td width="100%" colspan="3">
               <div align="center">
-              <% if $view_list_1 == "users_list" || $view_list_1 == "user" %>
-                <%= form_for(:server, url: '/server/admin/posts/3') do %>
-                  <font size="4" face=<%= @face %> color="lime">
-                    <%= text_field_tag(:val) %>
-                    <%= submit_tag "Load user by id" %>
-                  </font>
+                <% if $view_list_adm_iframe_1 == "users_list" || $view_list_adm_iframe_1 == "user" %>
+                  <%= form_for(:server, url: '/server/admin/posts/3') do %>
+                    <font size="4" face=<%= @face %> color="lime">
+                      <%= text_field_tag(:val) %>
+                      <%= submit_tag "Load user by id" %>
+                    </font>
+                  <% end %>
+                <% elsif $view_list_adm_iframe_1 == "game_conf" || $view_list_adm_iframe_1 == "location" %>
+                  <%= form_for(:server, url: '/server/admin/posts/3') do %>
+                    <font size="4" face=<%= @face %> color="lime">
+                      <%= text_field_tag(:val) %>
+                      <%= submit_tag "Load location" %>
+                    </font>
+                  <% end %>
+                <% else %>
+                  <%= form_for(:server, url: '/server/admin/posts/0') do %>
+                    <font size="4" face=<%= @face %> color="lime">
+                      <%= text_field_tag(:val) %>
+                      <%= submit_tag "Nothing" %>
+                    </font>
+                  <% end %>
                 <% end %>
-              <% elsif $view_list_1 == "game_conf" || $view_list_1 == "location" %>
-                <%= form_for(:server, url: '/server/admin/posts/3') do %>
-                  <font size="4" face=<%= @face %> color="lime">
-                    <%= text_field_tag(:val) %>
-                    <%= submit_tag "Load location" %>
-                  </font>
-                <% end %>
-              <% else %>
-                <%= form_for(:server, url: '/server/admin/posts/0') do %>
-                  <font size="4" face=<%= @face %> color="lime">
-                    <%= text_field_tag(:val) %>
-                    <%= submit_tag "Nothing" %>
-                  </font>
-                <% end %>
-              <% end %>
               </div>
             </td>
           </tr>
         </table>
       </td>
+
       <td width="34%">
         <table border="1" width="100%">
           <tr>
@@ -89,21 +93,47 @@
                 <% end %>
               </div>
             </td>
+            <td width="100%">
+              <div align="center">
+                <% case $show_adm_menu %>
+                <% when "default" %>
+                  <%= form_for(:server, url: '/server/admin/posts/5') do |f| %>
+                    <%= f.submit "Adm none", class: "btn btn-primary" %>
+                  <% end %>
+                <% when "none" %>
+                  <%= form_for(:server, url: '/server/admin/posts/5') do |f| %>
+                    <%= f.submit "Adm layout", class: "btn btn-primary" %>
+                  <% end %>
+                <% when "layout" %>
+                  <%= form_for(:server, url: '/server/admin/posts/5') do |f| %>
+                    <%= f.submit "Adm default", class: "btn btn-primary" %>
+                  <% end %>
+                <% else %>
+                  <%= form_for(:server, url: '/server/admin/posts/5') do |f| %>
+                    <%= f.submit "Adm none", class: "btn btn-primary" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </td>
           </tr>
         </table>
       </td>
+
       <td width="33%">
       </td>
     </tr>
+
     <tr>
       <td width="33%">
         <iframe name="adm_users_frame_1" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_1()}" %>>
         </iframe>
       </td>
+
       <td width="34%">
         <iframe name="adm_users_frame_2" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_2()}" %>>
         </iframe>
       </td>
+
       <td width="33%">
         <iframe name="adm_users_frame_3" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_3()}" %>>
         </iframe>

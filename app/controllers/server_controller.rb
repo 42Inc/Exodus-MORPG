@@ -57,8 +57,8 @@ class ServerController < ApplicationController
         render '/server/admin_user_view.html.erb'
       elsif (params[:id] == "4")
         @game_configuration = load_yml("game_config/game_configuration.yml")
-        if @game_configuration[0]["locations"].include?($view_location_1)
-          @location_configuration = load_yml("game_config/locations/#{$view_location_1}.yml")
+        if @game_configuration[0]["locations"].include?($view_location_iframe)
+          @location_configuration = load_yml("game_config/locations/#{$view_location_iframe}.yml")
         else
           @location_configuration = nil
         end 
@@ -85,27 +85,39 @@ class ServerController < ApplicationController
     end
 
     def admin_posts
-      if (params[:id] == "0")
-        $view_list_1 = "nothing"
-      elsif (params[:id] == "1")
-        $view_list_1 = "users_list"
-      elsif (params[:id] == "2")
-        $view_list_1 = "game_conf"
-      elsif (params[:id] == "3")
-        if $view_list_1 == "users_list" || $view_list == "user"
-          $view_user_id_1 = params[:val]
-          $view_list_1 = "user"
-        elsif $view_list_1 == "game_conf" || $view_list == "location"
-          $view_location_1 = params[:val]
-          $view_list_1 = "location"
-        else
-          $view_list_1 = "nothing"
-        end
-      elsif (params[:id] == "4")
-        $permit_registration = $permit_registration == true ? false : true
-      else 
-        $view_list_1 = "nothing"
-        $view_location_1 = "nothing"
+      case params[:id]
+        when "0"
+          $view_list_adm_iframe_1 = "nothing"
+        when "1"
+          $view_list_adm_iframe_1 = "users_list"
+        when "2"
+          $view_list_adm_iframe_1 = "game_conf"
+        when "3"
+          if $view_list_adm_iframe_1 == "users_list" || $view_list == "user"
+            $view_user_adm_iframe_id_1 = params[:val]
+            $view_list_adm_iframe_1 = "user"
+          elsif $view_list_adm_iframe_1 == "game_conf" || $view_list == "location"
+            $view_location_iframe = params[:val]
+            $view_list_adm_iframe_1 = "location"
+          else
+            $view_list_adm_iframe_1 = "nothing"
+          end
+        when "4"
+          $permit_registration = $permit_registration == true ? false : true
+        when "5"
+          case $show_adm_menu
+            when "layout"
+              $show_adm_menu = "default"
+            when "none"
+              $show_adm_menu = "layout"
+            when "default"
+              $show_adm_menu = "none"
+            else
+              $show_adm_menu = "none"
+          end
+        else 
+          $view_list_adm_iframe_1 = "nothing"
+          $view_location_iframe = "nothing"
       end
       redirect_to '/server/admin'
     end

@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
 
     #link_name, link_controller, link_action
     @links_navigation_menu = []
-    @show_adm_menu = "layout"
     @game_configuration = []
     @location_configuration = []
   end
