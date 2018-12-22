@@ -7,18 +7,14 @@
 <form name="Main_menu" align="center">
   <%- @links_main_menu.each_with_index do |value, index|%>
     <%- if (index % 3 == 0)%>
-    <div class="ui vertical pointing menu">
-      <a class="item">
         <font size="8" face=<%= @face %>>
           <%= link_to value, :controller => @links_main_menu[index + 1], :action =>  @links_main_menu[index + 2] %>
         </font>
-      </a>
-    </div>
+        <br>
     <%- end %>
   <%- end %>
 
   <br>
-
   <p align="center">
     <font size="4" face=<%= @face %> color="yellow"> Coming soon </font>
   </p>
