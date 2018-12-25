@@ -244,3 +244,35 @@ body {
   -webkit-animation: test2 60s linear infinite;
           animation: test2 60s linear infinite;
 }
+
+
+ul#my_menu {
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0;
+}
+
+ul#my_menu li a{
+  color: #3c4c1e; 
+  background: url(vert_css_menu_0.png) no-repeat 0 0; 
+  text-decoration: none; 
+  font-size: 20px;
+  width: 200px;
+  height: 43px;
+  display: block;
+  border: none;
+}
+
+ul#my_menu li a:hover{
+  background: url(vert_css_menu_1.png) no-repeat 0 0;
+  width: 200px;
+  height: 43px;
+  color: White; 
+}
+
+ul#my_menu li a span{
+  font-size: 25px; 
+  padding: 8px 20px 0 2px;
+  display: block; 
+   text-shadow: 2px 2px 2px #3e441a;
+}
