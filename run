@@ -8,6 +8,8 @@ case ARGV.length
   when 1
     if (ARGV[0] == "test")
       exec("./bin/rake test")
+    elsif (ARGV[0] == "c")
+      exec("./bin/rails c")
     end
     $server_ip = ARGV[0]
   when 2

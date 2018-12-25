@@ -24,7 +24,6 @@ class UsersController < ApplicationController
 
     def new
       @page = "New"
-      @user = User.new
       @links_navigation_menu = ["Main", "server", "main",
                                 "Users", "users", "index"]
     end
@@ -44,6 +43,8 @@ class UsersController < ApplicationController
       if $permit_registration == true
         if @user.save
           log_in @user
+          @player = Player.new(id_user: @user.id, name_user: @user.name)
+          @plyer.save
           flash[:success] = "Success!"
           redirect_to @user
         else

@@ -1,12 +1,11 @@
 module SessionsHelper
   $time_to_disconnect = 1800
-  # Осуществляет вход данного пользователя.
+
   def log_in(user)
-#    print("\nUpdate session!\n")
     session[:user_id] = [user.id, Time.now.to_i]
   end
 
-  # Возвращает пользователя, соответствующего remember-токену в куки.
+
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id[0])
@@ -26,26 +25,22 @@ module SessionsHelper
     return @current_user
   end
 
-  # Возвращает true, если пользователь вошел, иначе false.
   def logged_in?
     !current_user.nil?
   end
 
-  # Забывает постоянную сессии.
   def forget(user)
     user.forget
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
 
-  # Осуществляет выход текущего пользователя.
   def log_out
     forget(current_user)
     session.delete(:user_id)
     @current_user = nil
   end
 
-  # Запоминает пользователя в постоянную сессию.
   def remember(user)
     user.remember
     cookies.permanent.signed[:user_id] = user.id

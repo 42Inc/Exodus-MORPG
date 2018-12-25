@@ -25,6 +25,10 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:session][:password])
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        if (Player.find_by(id_user: user.id) == nil)
+          player = Player.new(id_user: user.id, name_user: user.name)
+          player.save
+        end
         redirect_to user
       else
         flash.now[:danger] = 'Invalid email/password combination'
