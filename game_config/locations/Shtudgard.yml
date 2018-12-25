@@ -3,10 +3,10 @@
 - location: Shtudgard
   npc:
     - Brian
-    - Jlexa
+    - JIexa
 
   teleport:
-    - Casian
+    - Rune
 
   mobs:
     - Northern Goblin

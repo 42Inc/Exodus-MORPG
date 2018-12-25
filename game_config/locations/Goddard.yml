@@ -3,11 +3,12 @@
 - location: Goddard
 
   npc:
-    - Gerald
+    - Geralt
     - Fedor
 
   teleport:
-    - Bixon
+    - Rune
+    - Shtudgard
 
   mobs:
     - Hungry rat
