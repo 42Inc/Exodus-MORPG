@@ -1,0 +1,11 @@
+---
+
+- name: "SpaceMarine"
+  HP: 100
+  DMG: 2
+  ARM: 1
+  MP: 50
+  ST: 30
+  SAN: 0
+  LCK: 5
+  CASH: 100
