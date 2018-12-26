@@ -47,14 +47,14 @@
           <tr>
             <td width="100%" colspan="3">
               <div align="center">
-                <% if @view_list_adm_iframe_1 == "users_list" || @view_list_adm_iframe_1 == "user" %>
+                <% if AdmViewDatum.find_by(id_user: current_user.id).view_list_adm_iframe_1 == "users_list" || @view_list_adm_iframe_1 == "user" %>
                   <%= form_for(:server, url: '/server/admin/posts/3') do %>
                     <font size="4" face=<%= @face %> color="lime">
                       <%= text_field_tag(:val) %>
                       <%= submit_tag "Load user by id" %>
                     </font>
                   <% end %>
-                <% elsif @view_list_adm_iframe_1 == "game_conf" || @view_list_adm_iframe_1 == "location" %>
+                <% elsif AdmViewDatum.find_by(id_user: current_user.id).view_list_adm_iframe_1 == "game_conf" || @view_list_adm_iframe_1 == "location" %>
                   <%= form_for(:server, url: '/server/admin/posts/3') do %>
                     <font size="4" face=<%= @face %> color="lime">
                       <%= text_field_tag(:val) %>
