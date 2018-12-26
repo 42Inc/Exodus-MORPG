@@ -28,6 +28,15 @@ class GameController < ApplicationController
         @player.update_attributes(location: "Goddard")
         @player.save
       end
+      if @player.hp == nil
+        @player.update_attributes(hp: "100")
+        @player.save
+      end
+      if @player.money == nil
+        @player.update_attributes(money: "1000")
+        @player.save
+      end
+
       @game_configuration = load_yml("game_config/game_configuration.yml")
 
       if @game_configuration[0]["locations"].include?(@location)

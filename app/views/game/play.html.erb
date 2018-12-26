@@ -11,6 +11,18 @@
       </iframe>
     </td>
     <td width="34%">
+      <table border="1" width="100%">
+        <tr>
+          <td>
+            <font size="4" face=<%= @face %> color="lime"> <%= "HP = #{Player.find_by(id: current_user.id).hp}" %> </font>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <font size="4" face=<%= @face %> color="lime"> <%= "Money = #{Player.find_by(id: current_user.id).money}" %> </font>
+          </td>
+        </tr>
+      </table>
     </td>
     <td width="33%">
       <iframe name="game_users_list" src="/game/play/iframes_3/1" scrolling="yes" width="100%">
@@ -21,8 +33,6 @@
     <td width="33%">
       <% if @location_configuration != nil %>
         <% if @location_configuration[0]["teleport"] != nil%>
-          <font size="4" face=<%= @face %> color="lightblue"> Teleports&nbsp:
-          <br>
           <% @location_configuration[0]["teleport"].each_with_index do |value,index| %> 
             <%= form_for(:game, url: '/game/posts/1') do %>
               <%= submit_tag "#{value}", class: "btn btn-primary" %>
