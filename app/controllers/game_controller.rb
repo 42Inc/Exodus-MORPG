@@ -23,9 +23,20 @@ class GameController < ApplicationController
   end
 
   def game_iframes_1
-    if (params[:id] == "1")
+    if (params[:id] == "0")
       @game_configuration = load_yml("game_config/game_configuration.yml")
       render '/game/game_configuration_list.html.erb'
+    elsif (params[:id] == "1")
+      @user = current_user
+      @player = Player.find_by(id: @user.id)
+      @location = @player.location
+      if @location == nil
+        @player.update_attributes(location: "Goddard")
+        @player.save
+        @location = @player.location
+      end
+      @location_configuration = load_yml("game_config/locations/#{@location}.yml")
+      render '/game/game_location_view.html.erb'
     else
       render '/server/notfound'
     end

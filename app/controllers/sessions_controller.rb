@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         if (Player.find_by(id_user: user.id) == nil)
-          player = Player.new(id_user: user.id, name_user: user.name)
+          player = Player.new(id_user: user.id, name_user: user.name, location: "Goddard")
           player.save
         end
         redirect_to user
