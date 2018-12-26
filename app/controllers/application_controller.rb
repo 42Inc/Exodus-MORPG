@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include ServerHelper
   include SessionsHelper
+  include GameHelper
 
   def initialize
     @bgcolor = "black"

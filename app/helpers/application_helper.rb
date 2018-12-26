@@ -5,6 +5,7 @@ $view_list_adm_iframe_1 = "nothing"
 $view_user_adm_iframe_id_1 = 0
 $view_location = "nothing"
 $show_adm_menu = "layout"
+$view_list_game_iframe_1 = "location"
 
 module ApplicationHelper
   def get_git_branch

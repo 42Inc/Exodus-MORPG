@@ -20,6 +20,25 @@ class GameController < ApplicationController
     @links_navigation_menu = ["Main", "server", "main",
                               "Game", "game", "game"]
     @page = "Play"
+    @user = current_user
+    if (@user != nil)
+      @player = Player.find_by(id_user: @user.id)
+      @location = @player.location
+      if @location == nil
+        @player.update_attributes(location: "Goddard")
+        @player.save
+        @location = @player.location
+      end
+      @game_configuration = load_yml("game_config/game_configuration.yml")
+
+      if @game_configuration[0]["locations"].include?($view_location_iframe)
+        @location_configuration = load_yml("game_config/locations/#{$view_location_iframe}.yml")
+      else
+        @location_configuration = nil
+      end 
+    else 
+      @location_configuration = nil
+    end
   end
 
   def game_iframes_1
@@ -28,18 +47,45 @@ class GameController < ApplicationController
       render '/game/game_configuration_list.html.erb'
     elsif (params[:id] == "1")
       @user = current_user
-      @player = Player.find_by(id: @user.id)
-      @location = @player.location
-      if @location == nil
-        @player.update_attributes(location: "Goddard")
-        @player.save
+      if (@user != nil)
+        @player = Player.find_by(id_user: @user.id)
         @location = @player.location
+        if @location == nil
+          @player.update_attributes(location: "Goddard")
+          @player.save
+          @location = @player.location
+        end
+        @game_configuration = load_yml("game_config/game_configuration.yml")
+        if @game_configuration[0]["locations"].include?($view_location_iframe)
+          @location_configuration = load_yml("game_config/locations/#{$view_location_iframe}.yml")
+        else
+          @location_configuration = nil
+        end 
+
+        if (@location_configuration != nil)
+          render '/game/game_location_view.html.erb'
+        else 
+          render '/game/game_configuration_list.html.erb'
+        end
       end
-      @location_configuration = load_yml("game_config/locations/#{@location}.yml")
-      render '/game/game_location_view.html.erb'
-    else
-      render '/server/notfound'
     end
+  end
+
+  def game_posts
+    if (params[:id] == "0")
+        $view_list_adm_iframe_1 = "nothing"  
+    elsif (params[:id] == "1")
+      if (params[:commit] != nil)
+        @user = current_user
+        if (@user != nil)
+          @player = Player.find_by(id_user: @user.id)
+          @player.update_attributes(location: params[:commit])
+          @player.save
+        end
+        $view_list_adm_iframe_1 = "location"     
+      end      
+    end
+    redirect_to '/game/play'
   end
 
   def about

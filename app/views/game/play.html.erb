@@ -15,8 +15,30 @@
 <table border="1" width="100%">
   <tr>
     <td width="33%">
-      <iframe name="game_config_list" src="/game/play/iframes_1/1" scrolling="yes" width="100%">
+      <iframe name="game_config_list" src=<%= "#{get_game_iframe_1()}" %> scrolling="yes" width="100%">
       </iframe>
+    </td>
+    <td width="34%">
+    </td>
+    <td width="33%">
+    </td>
+  </tr>
+  <tr>
+    <td width="33%">
+      <% if @location_configuration != nil %>
+      <% if @location_configuration[0]["teleport"] != nil%>
+        <font size="4" face=<%= @face %> color="lightblue"> Teleports&nbsp:
+        <br>
+        <% @location_configuration[0]["teleport"].each_with_index do |value,index| %> 
+          <%= form_for(:game, url: '/game/posts/1') do %>
+            <%= submit_tag "#{value}", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+        </font>
+      <% end %>
+      <% else %>
+        <font size="4" face=<%= @face %> color="red"> Wrong location. Please, call sysadm.</font>
+      <% end %>
     </td>
     <td width="34%">
     </td>

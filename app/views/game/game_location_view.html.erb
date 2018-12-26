@@ -15,12 +15,13 @@
               <% end %>
             <% end %>
             <% if @location_configuration[0]["teleport"] != nil%>
-              <font size="4" face=<%= @face %> color="lightblue"> Teleports&nbsp: </font>
+              <font size="4" face=<%= @face %> color="lightblue"> Teleports&nbsp:
               <br>
-              <% @location_configuration[0]["teleport"].each_with_index do |value,index| %>
-                <font size="4" face=<%= @face %> color="lightblue"> <%= " - #{value}" %> </font>
+              <% @location_configuration[0]["teleport"].each_with_index do |value,index| %> 
+                -&nbsp<%= "#{value}" %>
                 <br>
               <% end %>
+              </font>
             <% end %>
             <% if @location_configuration[0]["mobs"] != nil%>
               <font size="4" face=<%= @face %> color="lightblue"> Mobs&nbsp: </font>

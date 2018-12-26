@@ -21,14 +21,15 @@ Rails.application.routes.draw do
   #delete
   delete '/logout'  => 'sessions#destroy'
 
+  #posts
+  post '/server/admin/posts/:id' => 'server#admin_posts'
+  post '/game/posts/:id' => 'game#game_posts'
+
   #iframe
   get '/server/admin/iframes_1/:id'   => 'server#admin_iframes_1'
   get '/server/admin/iframes_2/:id'   => 'server#admin_iframes_2'
   get '/server/admin/iframes_3/:id'   => 'server#admin_iframes_3'
   get '/game/play/iframes_1/:id'   => 'game#game_iframes_1'
-
-  #posts
-  post '/server/admin/posts/:id' => 'server#admin_posts'
 
   #mask other
   get '/server/admin/*permalink' => "server#admin"
