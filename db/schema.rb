@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_153010) do
+ActiveRecord::Schema.define(version: 2018_12_26_165146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 2018_12_26_153010) do
     t.string "id_user"
     t.string "view_list_adm_iframe_1"
     t.string "view_location"
+    t.string "view_location_iframe"
     t.string "view_user_adm_iframe_id_1"
     t.string "view_list_game_iframe_1"
+    t.string "view_list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,6 +33,14 @@ ActiveRecord::Schema.define(version: 2018_12_26_153010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
+  end
+
+  create_table "quests", force: :cascade do |t|
+    t.string "id_user"
+    t.string "stage"
+    t.string "id_quest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

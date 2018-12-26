@@ -30,6 +30,20 @@ class ServerController < ApplicationController
                           "Users", "users", "index"]
       @links_navigation_menu = []
       @page = "Main"
+
+      if logged_in?
+        @adm = AdmViewDatum.find_by(id_user: current_user.id)
+        if @adm == nil
+          @adm = AdmViewDatum.new
+          @adm.id_user = current_user.id
+          @adm.view_list_adm_iframe_1 = "nothing"
+          @adm.view_location = "nothing"
+          @adm.view_location_iframe = "nothing"
+          @adm.view_user_adm_iframe_id_1 = "0"
+          @adm.view_list_game_iframe_1 = "location"
+          @adm.save
+        end
+      end
     end
 
     def admin
@@ -39,17 +53,6 @@ class ServerController < ApplicationController
       if logged_in?
         if current_user.adm == false
           redirect_to '/server/notfound'
-        end
-
-        @adm = AdmViewDatum.find_by(id_user: current_user.id)
-        if @adm == nil
-          @adm = AdmViewDatum.new
-          @adm.id_user = current_user.id
-          @adm.view_list_adm_iframe_1 = "nothing"
-          @adm.view_location = "nothing"
-          @adm.view_user_adm_iframe_id_1 = "0"
-          @adm.view_list_game_iframe_1 = "location"
-          @adm.save
         end
       elsif
         redirect_to '/server/notfound'
@@ -68,8 +71,8 @@ class ServerController < ApplicationController
         render '/server/admin_user_view.html.erb'
       elsif (params[:id] == "4")
         @game_configuration = load_yml("game_config/game_configuration.yml")
-        if @game_configuration[0]["locations"].include?($view_location_iframe)
-          @location_configuration = load_yml("game_config/locations/#{$view_location_iframe}.yml")
+        if @game_configuration[0]["locations"].include?(AdmViewDatum.find_by(id_user: current_user.id).view_location_iframe)
+          @location_configuration = load_yml("game_config/locations/#{AdmViewDatum.find_by(id_user: current_user.id).view_location_iframe}.yml")
         else
           @location_configuration = nil
         end 

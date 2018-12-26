@@ -33,7 +33,7 @@
             <% end %>
           <% else %>
             <font size="4" face=<%= @face %> color="lightblue"> Location&nbsp: </font>
-            <font size="4" face=<%= @face %> color="green"> <%= $view_location_iframe %> </font>
+            <font size="4" face=<%= @face %> color="green"> <%= AdmViewDatum.find_by(id_user: current_user.id).view_location_iframe %> </font>
             <br>
             <font size="4" face=<%= @face %> color="red"> Not found! </font>
           <% end %>

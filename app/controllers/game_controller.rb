@@ -27,7 +27,6 @@ class GameController < ApplicationController
       if @location == nil
         @player.update_attributes(location: "Goddard")
         @player.save
-        @location = @player.location
       end
       @game_configuration = load_yml("game_config/game_configuration.yml")
 
@@ -93,7 +92,7 @@ class GameController < ApplicationController
 
   def game_posts
     if (params[:id] == "0")
-        $view_list_adm_iframe_1 = "nothing"  
+      AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "nothing")  
     elsif (params[:id] == "1")
       if (params[:commit] != nil)
         @user = current_user
@@ -102,7 +101,7 @@ class GameController < ApplicationController
           @player.update_attributes(location: params[:commit])
           @player.save
         end
-        $view_list_adm_iframe_1 = "location"     
+        AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "location")    
       end      
     end
     redirect_to '/game/play'
