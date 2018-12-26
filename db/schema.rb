@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_074855) do
+ActiveRecord::Schema.define(version: 2018_12_26_153010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adm_view_data", force: :cascade do |t|
+    t.string "id_user"
+    t.string "view_list_adm_iframe_1"
+    t.string "view_location"
+    t.string "view_user_adm_iframe_id_1"
+    t.string "view_list_game_iframe_1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "id_user"

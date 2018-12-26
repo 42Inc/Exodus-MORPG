@@ -1,0 +1,2 @@
+class AdmViewDatum < ApplicationRecord
+end

@@ -38,7 +38,18 @@ class ServerController < ApplicationController
       @page = "Admin"
       if logged_in?
         if current_user.adm == false
-        redirect_to '/server/notfound'
+          redirect_to '/server/notfound'
+        end
+
+        @adm = AdmViewDatum.find_by(id_user: current_user.id)
+        if @adm == nil
+          @adm = AdmViewDatum.new
+          @adm.id_user = current_user.id
+          @adm.view_list_adm_iframe_1 = "nothing"
+          @adm.view_location = "nothing"
+          @adm.view_user_adm_iframe_id_1 = "0"
+          @adm.view_list_game_iframe_1 = "location"
+          @adm.save
         end
       elsif
         redirect_to '/server/notfound'
@@ -87,20 +98,20 @@ class ServerController < ApplicationController
     def admin_posts
       case params[:id]
         when "0"
-          $view_list_adm_iframe_1 = "nothing"
+          AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "nothing")
         when "1"
-          $view_list_adm_iframe_1 = "users_list"
+          AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "users_list")
         when "2"
-          $view_list_adm_iframe_1 = "game_conf"
+          AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "game_conf")
         when "3"
-          if $view_list_adm_iframe_1 == "users_list" || $view_list == "user"
-            $view_user_adm_iframe_id_1 = params[:val]
-            $view_list_adm_iframe_1 = "user"
-          elsif $view_list_adm_iframe_1 == "game_conf" || $view_list == "location"
-            $view_location_iframe = params[:val]
-            $view_list_adm_iframe_1 = "location"
+          if AdmViewDatum.find_by(id_user: current_user.id).view_list_adm_iframe_1 == "users_list" || AdmViewDatum.find_by(id_user: current_user.id).view_list == "user"
+            AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_user_adm_iframe_id_1: params[:val])
+            AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "user")
+          elsif AdmViewDatum.find_by(id_user: current_user.id).view_list_adm_iframe_1 == "game_conf" || AdmViewDatum.find_by(id_user: current_user.id).view_list == "location"
+            AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_location_iframe: params[:val])
+            AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "location")
           else
-            $view_list_adm_iframe_1 = "nothing"
+            AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "nothing")
           end
         when "4"
           $permit_registration = $permit_registration == true ? false : true
@@ -116,8 +127,8 @@ class ServerController < ApplicationController
               $show_adm_menu = "none"
           end
         else 
-          $view_list_adm_iframe_1 = "nothing"
-          $view_location_iframe = "nothing"
+          AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "nothing")
+          AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_location_iframe: "nothing")
       end
       redirect_to '/server/admin'
     end

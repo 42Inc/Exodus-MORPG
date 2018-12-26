@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_user: MyString
+  view_list_adm_iframe_1: MyString
+  view_location: MyString
+  view_user_adm_iframe_id_1: MyString
+  view_list_game_iframe_1: MyString
+
+two:
+  id_user: MyString
+  view_list_adm_iframe_1: MyString
+  view_location: MyString
+  view_user_adm_iframe_id_1: MyString
+  view_list_game_iframe_1: MyString
