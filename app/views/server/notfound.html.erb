@@ -1,12 +1,11 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
-<form name="404" align="center" width="100%">
-  <div align="center" width="100%">
-    <font size="10" face=<%= @face %> color="red"> ERROR&nbsp404&nbsp:&nbspPAGE&nbspNOT&nbspFOUND </font>
-    <font size="10" face=<%= @face %> color="red">
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-      <p>If you are the application owner check the logs for more information.</p>
-    </font>
-  </div>
-</form>
+
+<div class="area"> 404 </div>
+<div align="center" width="50%">
+  <font size="5" face=<%= @face %> color="white">
+    <h1>The page you were looking for doesn't exist.</h1>
+    <p>You may have mistyped the address or the page may have moved.</p>
+    <p>If you are the application owner check the logs for more information.</p>
+  </font>
+</div>
