@@ -277,5 +277,10 @@ ul#my_menu li a span{
    text-shadow: 2px 2px 2px #3e441a;
 }
 .admin-tab{
-  
+  border-collapse: collapse;
+  border: 1px solid black;
+  background: url(bg-tab.png) repeat;
+}
+.play-tab {
+  border: 0px;
 }
