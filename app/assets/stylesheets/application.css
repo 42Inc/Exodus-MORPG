@@ -244,3 +244,84 @@ body {
   -webkit-animation: test2 60s linear infinite;
           animation: test2 60s linear infinite;
 }
+
+
+ul#my_menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul#my_menu li a{
+  color: #3c4c1e;
+  background: url(vert_css_menu_0.png) no-repeat 0 0;
+  text-decoration: none;
+  font-size: 20px;
+  width: 200px;
+  height: 43px;
+  display: block;
+  border: none;
+}
+
+ul#my_menu li a:hover{
+  background: url(vert_css_menu_1.png) no-repeat 0 0;
+  width: 200px;
+  height: 43px;
+  color: White;
+}
+
+ul#my_menu li a span{
+  font-size: 25px;
+  padding: 8px 20px 0 2px;
+  display: block;
+   text-shadow: 2px 2px 2px #3e441a;
+}
+.admin-tab{
+  border-collapse: collapse;
+  border: 1px solid black;
+  background: url(bg-tab.png) repeat;
+}
+.play-tab {
+  border: 0px;
+}
+
+/* 404 */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.area {
+  text-align: center;
+  font-size: 6.5em;
+  color: #fff;
+  letter-spacing: -7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: blur .75s ease-out infinite;
+  text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
+}
+
+@keyframes blur {
+  from {
+    text-shadow:0px 0px 10px #fff,
+      0px 0px 10px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 50px #fff,
+      0px 0px 50px #fff,
+      0px 0px 50px #7B96B8,
+      0px 0px 150px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px -10px 100px #7B96B8,
+      0px -10px 100px #7B96B8;
+  }
+}
+/*log in*/
+.login {
+  background: #d1a002;
+}

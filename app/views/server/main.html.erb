@@ -4,22 +4,17 @@
 <div class="three"><h1> Exodus-MORPG </h1></div>
 <div class="bubbles"></div>
 
-<form name="Main_menu" align="center">
-  <%- @links_main_menu.each_with_index do |value, index|%>
-    <%- if (index % 3 == 0)%>
-    <div class="ui vertical pointing menu">
-      <a class="item">
-        <font size="8" face=<%= @face %>>
-          <%= link_to value, :controller => @links_main_menu[index + 1], :action =>  @links_main_menu[index + 2] %>
-        </font>
-      </a>
-    </div>
-    <%- end %>
-  <%- end %>
 
   <br>
+  <div align="center">
+    <ul id="my_menu">
+      <li><a href="/server"><span>Server</span></a></li>
+      <li><a href="/game"><span>Game</span></a></li>
+      <li><a href="/users"><span>Users</span></a></li>
+    </ul>
+</div>
 
   <p align="center">
     <font size="4" face=<%= @face %> color="yellow"> Coming soon </font>
   </p>
-</form>
+

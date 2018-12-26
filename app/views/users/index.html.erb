@@ -1,14 +1,14 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
 
-<form name="Main_menu" align="center">
-  <%- @links_main_menu.each_with_index do |value, index|%>
-    <%- if (index % 3 == 0)%>
-      <p align="center"  style="margin: 1px;">
-        <font size="6" face=<%= @face %>>
-          <%= link_to value, :controller => @links_main_menu[index + 1], :action =>  @links_main_menu[index + 2] %>
-        </font>
-      </p>
-    <%- end %>
-  <%- end %>
-</form>
+<div class="three"><h1> Exodus-MORPG </h1></div>
+<div class="bubbles"></div>
+
+
+  <br>
+  <div align="center">
+    <ul id="my_menu">
+      <li><a href="/login"><span>Log in</span></a></li>
+      <li><a href="/users/new"><span>Sign up</span></a></li>
+    </ul>
+</div>

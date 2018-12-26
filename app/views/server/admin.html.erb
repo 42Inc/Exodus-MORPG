@@ -1,9 +1,7 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
 
-<h1 align="center" >
-  <font size="6" face=<%= @face %> color="green"> Admin </font>
-</h1>
+<div class="three"><h1> Admin </h1></div>
 
 <table align="center">
   <tr>
@@ -22,10 +20,10 @@
 <br>
 
 <% if logged_in? && current_user.adm == true %>
-  <table border="1" width="100%">
+  <table border="1" width="100%" class="admin-tab">
     <tr>
       <td width="33%">
-        <table border="1" width="100%">
+        <table border="1" width="100%" class="admin-tab">
           <tr>
             <td width="33%">
               <%= form_for(:server, url: '/server/admin/posts/0') do |f| %>
@@ -78,7 +76,7 @@
       </td>
 
       <td width="34%">
-        <table border="1" width="100%">
+        <table border="1" width="100%" class="admin-tab">
           <tr>
             <td width="100%">
               <div align="center">
@@ -125,19 +123,22 @@
 
     <tr>
       <td width="33%">
-        <iframe name="adm_users_frame_1" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_1()}" %>>
+        <iframe border="0px" style="border-style: none;" name="adm_users_frame_1" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_1()}" %>>
         </iframe>
       </td>
 
       <td width="34%">
-        <iframe name="adm_users_frame_2" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_2()}" %>>
+        <iframe border="0px" style="border-style: none;" name="adm_users_frame_2" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_2()}" %>>
         </iframe>
       </td>
 
       <td width="33%">
-        <iframe name="adm_users_frame_3" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_3()}" %>>
+        <iframe border="0px" style="border-style: none;" name="adm_users_frame_3" scrolling="yes" width="100%" src=<%= "#{get_admin_iframe_3()}" %>>
         </iframe>
       </td>
     </tr>
   </table>
+  <% if Rails.env == "development"%>
+    <%= console %>
+  <% end %>
 <% end %>

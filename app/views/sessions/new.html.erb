@@ -1,32 +1,28 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
 
-<div class="row" align="center">
-  <div class="col-md-6 col-md-offset-3">
-    <h1>
-      <font size="6" face=<%= @face %> color="lime">
-        Log in
-        <br>
-      </font>
-    </h1>
+<div class="three"><h1> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log in&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</h1></div>
 
+<table bgcolor="#d1a002" align="center">
+  <tr>
+    <td align="center">
     <%= form_for(:session, url: '/login') do |f| %>
-      <font size="4" face=<%= @face %> color="lime">
+      <font size="4"  face=<%= @face %> color="#3e441a">
         <%= f.label :email %>
-        <br><br>
+        <br>
         <%= f.email_field :email, class: 'form-control' %>
       </font>
       <br><br>
 
-      <font size="4" face=<%= @face %> color="lime">
+      <font size="4" face=<%= @face %> color="#3e441a">
         <%= f.label :password %>
-        <br><br>
+        <br>
         <%= f.password_field :password, class: 'form-control' %>
       </font>
       <br><br>
       <%= f.label :remember_me, class: "checkbox inline" do %>
         <%= f.check_box :remember_me %>
-          <font size="4" face=<%= @face %> color="lime">
+          <font size="4" face=<%= @face %> color="#3e441a">
             <span>Remember me on this computer</span>
           </font>
       <% end %>
@@ -35,8 +31,9 @@
       <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
 
-    <font size="4" face=<%= @face %> color="lime">
+    <font size="4" face=<%= @face %> color="#3e441a">
       <p>New user? <%= link_to "Sign up now!", "/users/new" %></p>
     </font>
-  </div>
-</div>
+  </td>
+</tr>
+</table>
