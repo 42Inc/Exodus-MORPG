@@ -31,8 +31,8 @@ class GameController < ApplicationController
       end
       @game_configuration = load_yml("game_config/game_configuration.yml")
 
-      if @game_configuration[0]["locations"].include?($view_location_iframe)
-        @location_configuration = load_yml("game_config/locations/#{$view_location_iframe}.yml")
+      if @game_configuration[0]["locations"].include?(@location)
+        @location_configuration = load_yml("game_config/locations/#{@location}.yml")
       else
         @location_configuration = nil
       end 
@@ -56,8 +56,8 @@ class GameController < ApplicationController
           @location = @player.location
         end
         @game_configuration = load_yml("game_config/game_configuration.yml")
-        if @game_configuration[0]["locations"].include?($view_location_iframe)
-          @location_configuration = load_yml("game_config/locations/#{$view_location_iframe}.yml")
+        if @game_configuration[0]["locations"].include?(@location)
+          @location_configuration = load_yml("game_config/locations/#{@location}.yml")
         else
           @location_configuration = nil
         end 
@@ -69,6 +69,26 @@ class GameController < ApplicationController
         end
       end
     end
+  end
+
+  def game_iframes_3
+    @user = current_user
+    if (@user != nil)
+      @player = Player.find_by(id_user: @user.id)
+      @location = @player.location
+      if @location == nil
+        @player.update_attributes(location: "Goddard")
+        @player.save
+        @location = @player.location
+      end
+      @game_configuration = load_yml("game_config/game_configuration.yml")
+      if @game_configuration[0]["locations"].include?(@location)
+        @location_configuration = load_yml("game_config/locations/#{@location}.yml")
+      else
+        @location_configuration = nil
+      end 
+    end
+    render '/game/game_location_users_list.html.erb'
   end
 
   def game_posts

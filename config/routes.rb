@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/server/admin/iframes_2/:id'   => 'server#admin_iframes_2'
   get '/server/admin/iframes_3/:id'   => 'server#admin_iframes_3'
   get '/game/play/iframes_1/:id'   => 'game#game_iframes_1'
+  get '/game/play/iframes_3/:id'   => 'game#game_iframes_3'
 
   #mask other
   get '/server/admin/*permalink' => "server#admin"

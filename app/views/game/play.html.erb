@@ -2,6 +2,7 @@
 <%= render :template => "layouts/application" %>
 
 <div class="three"><h1> Play </h1></div>
+<% if logged_in? %>
 
 <table border="1" width="100%" class="admin-tab">
   <tr>
@@ -12,21 +13,23 @@
     <td width="34%">
     </td>
     <td width="33%">
+      <iframe name="game_users_list" src="/game/play/iframes_3/1" scrolling="yes" width="100%">
+      </iframe>
     </td>
   </tr>
   <tr>
     <td width="33%">
       <% if @location_configuration != nil %>
-      <% if @location_configuration[0]["teleport"] != nil%>
-        <font size="4" face=<%= @face %> color="lightblue"> Teleports&nbsp:
-        <br>
-        <% @location_configuration[0]["teleport"].each_with_index do |value,index| %> 
-          <%= form_for(:game, url: '/game/posts/1') do %>
-            <%= submit_tag "#{value}", class: "btn btn-primary" %>
+        <% if @location_configuration[0]["teleport"] != nil%>
+          <font size="4" face=<%= @face %> color="lightblue"> Teleports&nbsp:
+          <br>
+          <% @location_configuration[0]["teleport"].each_with_index do |value,index| %> 
+            <%= form_for(:game, url: '/game/posts/1') do %>
+              <%= submit_tag "#{value}", class: "btn btn-primary" %>
+            <% end %>
           <% end %>
+          </font>
         <% end %>
-        </font>
-      <% end %>
       <% else %>
         <font size="4" face=<%= @face %> color="red"> Wrong location. Please, call sysadm.</font>
       <% end %>
@@ -37,3 +40,4 @@
     </td>
   </tr>
 </table>
+<% end %>
