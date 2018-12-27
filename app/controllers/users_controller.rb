@@ -26,6 +26,7 @@ class UsersController < ApplicationController
       @page = "New"
       @links_navigation_menu = ["Main", "server", "main",
                                 "Users", "users", "index"]
+      @user = User.new
     end
 
     def index
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
         if @user.save
           log_in @user
           @player = Player.new(id_user: @user.id, name_user: @user.name)
-          @plyer.save
+          @player.save
           flash[:success] = "Success!"
           redirect_to @user
         else
