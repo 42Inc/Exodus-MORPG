@@ -111,7 +111,19 @@ class GameController < ApplicationController
           @player.save
         end
         AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "location")    
-      end      
+      end        
+    elsif (params[:id] == "2")
+      if (params[:commit] != nil)
+        @quest_config = load_yml("game_config/quests/#{params[:commit]}.yml")
+        @user = current_user
+        if (@user != nil)
+          @quest = Quest.find_by(id_quest: @quest_config[0]["questId"], id_user: @user.id)
+          if (@quest == nil)
+            @quest = Quest.new(id_user: @user.id, stage: "1", id_quest: @quest_config[0]["questId"][0], name_quest: params[:commit]);
+            @quest.save
+          end
+        end  
+      end        
     end
     redirect_to '/game/play'
   end

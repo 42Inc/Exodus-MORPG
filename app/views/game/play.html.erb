@@ -50,15 +50,18 @@
            <% @npc_configuration = load_yml("game_config/npcs/#{value}.yml") %>
            <% if @npc_configuration[0]["quests"] != nil%>                  
              <% @npc_configuration[0]["quests"].each_with_index do |q,i| %>
-               <%= form_for(:game, url: '/game/posts/2') do %>
-                 <%= submit_tag "#{q}", class: "btn btn-primary" %>
+               <% @quest_config = load_yml("game_config/quests/#{q}.yml") %>
+               <% @quest = Quest.find_by(id_quest: @quest_config[0]["questId"], id_user: @user.id) %>
+               <% if (@quest == nil) %>
+                 <%= form_for(:game, url: '/game/posts/2') do %>
+                   <%= submit_tag "#{q}", class: "btn btn-primary" %>
+                 <% end %>
                <% end %>
              <% end %>
            <% end %>
            <br>
          <% end %>
        <% end %>
-
     </td>
     <td width="33%">
     </td>
