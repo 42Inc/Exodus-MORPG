@@ -1,0 +1,11 @@
+---
+
+- quest: KillingMonsters
+  questId:
+    - 1
+  targetType:
+    - mob
+  target:
+    - Hungry rat
+  count:
+    - 1
