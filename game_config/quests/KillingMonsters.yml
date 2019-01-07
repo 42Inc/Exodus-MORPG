@@ -3,9 +3,9 @@
 - quest: KillingMonsters
   questId:
     - 1
-  targetType:
-    - mob
+  type_quest:
+    - kill
   target:
     - Hungry rat
   count:
-    - 1
+    - 3

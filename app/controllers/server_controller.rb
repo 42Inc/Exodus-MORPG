@@ -43,6 +43,12 @@ class ServerController < ApplicationController
           @adm.view_list_game_iframe_1 = "location"
           @adm.save
         end
+
+        @player = Player.find_by(id_user: current_user.id)
+        if @player == nil
+          @player = Player.new(id_user: current_user.id, name_user: current_user.name)
+          @player.save
+        end
       end
     end
 

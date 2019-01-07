@@ -3,11 +3,30 @@
     <table border="1" width="100%">
       <tr>
         <td width="100%">
-          <font size="4" face=<%= @face %> color="gold">
+          <font size="4" face=<%= @face %> color="gold">Players:<br>
           <% if @location_configuration != nil%>
             <%= Player.find_each do |i|%>
               <% if i.location == @location_configuration[0]["location"]%>
-                <%="#{i.name_user}"%>
+                &nbsp&nbsp<%="- #{i.name_user}"%>
+                <br>
+              <%end%>
+            <% end %>
+          <% end %>
+          </font>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div align="left">
+    <table border="1" width="100%">
+      <tr>
+        <td width="100%">
+          <font size="4" face=<%= @face %> color="gold">Quests:<br>
+          <% if @location_configuration != nil%>
+            <%= Quest.find_each do |i|%>
+              <% if i.id_user.to_i == current_user.id && i.stage != "255" %>
+                &nbsp&nbsp<%="- #{i.name_quest}"%>
                 <br>
               <%end%>
             <% end %>
