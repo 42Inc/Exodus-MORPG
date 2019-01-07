@@ -6,6 +6,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   # end
 
   test "invalid signup information" do
+    $permit_registration = true
     get '/users/new'
     assert_no_difference("User.count") do
       $permit_registration = true
@@ -21,6 +22,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   end
 
   test "valid signup information" do
+    $permit_registration = true
     get '/users/new'
       user_params =  { user: {
                               name:  "Example User",
@@ -29,7 +31,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                               password_confirmation: "password"
                              }
                       }
-      post(users_path, params: user_params)
+      post('/users', params: user_params)
       follow_redirect!
   
     assert is_logged_in?
