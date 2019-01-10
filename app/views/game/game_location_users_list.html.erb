@@ -6,7 +6,7 @@
           <font size="4" face=<%= @face %> color="gold">Players:<br>
           <% if @location_configuration != nil%>
             <%= Player.find_each do |i|%>
-              <% if i.location == @location_configuration[0]["location"]%>
+              <% if i.location == @location_configuration[0]["location"] && User.find_by(id: i.id_user.to_i).active == true %>
                 &nbsp&nbsp<%="- #{i.name_user}"%>
                 <br>
               <%end%>
