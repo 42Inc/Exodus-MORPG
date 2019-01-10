@@ -123,17 +123,17 @@ class ServerController < ApplicationController
             AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "nothing")
           end
         when "4"
-          $permit_registration = $permit_registration == true ? false : true
+         ServerConfig.first.permit_registration == true ? ServerConfig.first.update_attributes(permit_registration: false) : ServerConfig.first.update_attributes(permit_registration: true)
         when "5"
-          case $show_adm_menu
+          case ServerConfig.first.show_adm_menu
             when "layout"
-              $show_adm_menu = "default"
+              ServerConfig.first.update_attributes(show_adm_menu: "default")
             when "none"
-              $show_adm_menu = "layout"
+              ServerConfig.first.update_attributes(show_adm_menu: "layout")
             when "default"
-              $show_adm_menu = "none"
+              ServerConfig.first.update_attributes(show_adm_menu: "none")
             else
-              $show_adm_menu = "none"
+              ServerConfig.first.update_attributes(show_adm_menu: "none")
           end
         else 
           AdmViewDatum.find_by(id_user: current_user.id).update_attributes(view_list_adm_iframe_1: "nothing")

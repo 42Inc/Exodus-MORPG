@@ -80,7 +80,7 @@
           <tr>
             <td width="100%">
               <div align="center">
-                <% if $permit_registration == false %>
+                <% if ServerConfig.first.permit_registration == false %>
                   <%= form_for(:server, url: '/server/admin/posts/4') do |f| %>
                     <%= f.submit "Allow reg", class: "btn btn-primary" %>
                   <% end %>
@@ -93,7 +93,7 @@
             </td>
             <td width="100%">
               <div align="center">
-                <% case $show_adm_menu %>
+                <% case ServerConfig.first.show_adm_menu %>
                 <% when "default" %>
                   <%= form_for(:server, url: '/server/admin/posts/5') do |f| %>
                     <%= f.submit "Adm none", class: "btn btn-primary" %>

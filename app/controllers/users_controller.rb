@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       @user = User.new(params_for_user)
       @links_navigation_menu = ["Main", "server", "main"]
       @user.adm = false
-      if $permit_registration == true
+      if ServerConfig.first.permit_registration == true
         if @user.save
           log_in @user
           @player = Player.new(id_user: @user.id, name_user: @user.name)

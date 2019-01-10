@@ -18,5 +18,9 @@ class ApplicationController < ActionController::Base
     @links_navigation_menu = []
     @game_configuration = []
     @location_configuration = []
+    if (ServerConfig.first == nil)
+      _s = ServerConfig.new(permit_registration: false, show_adm_menu: "layout")
+      _s.save
+    end
   end
 end
