@@ -20,3 +20,4 @@
   repeat: false
   complete:
     - money: 100000
+    - hp: 100

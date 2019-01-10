@@ -22,6 +22,12 @@
             <font size="4" face=<%= @face %> color="lime"> <%= "Money = #{Player.find_by(id_user: current_user.id).money}" %> </font>
           </td>
         </tr>
+
+        <tr>
+          <td>
+            <font size="4" face=<%= @face %> color="lime"> <%= "Arm = #{Player.find_by(id_user: current_user.id).def}" %> </font>
+          </td>
+        </tr>
       </table>
     </td>
     <td width="33%">

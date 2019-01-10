@@ -26,15 +26,18 @@ class GameController < ApplicationController
       @location = @player.location
       if @location == nil
         @player.update_attributes(location: "Goddard")
-        @player.save
       end
       if @player.hp == nil
         @player.update_attributes(hp: "100")
-        @player.save
       end
       if @player.money == nil
         @player.update_attributes(money: "1000")
-        @player.save
+      end
+      if @player.def == nil
+        @player.update_attributes(def: "2")
+      end
+      if @player.immortality == nil
+        @player.update_attributes(immortality: false)
       end
 
       @game_configuration = load_yml("game_config/game_configuration.yml")
@@ -44,6 +47,9 @@ class GameController < ApplicationController
       else
         @location_configuration = nil
       end 
+      if (@player.hp.to_i <= 0)
+        redirect_to '/game'
+      end
     else 
       @location_configuration = nil
     end
@@ -128,15 +134,27 @@ class GameController < ApplicationController
       end
     elsif (params[:id] == "3") 
       if (params[:commit] != nil)
+        @mob_config = load_yml("game_config/mobs/#{params[:commit]}.yml")
+        _player = Player.find_by(id_user: current_user.id)
+        change_hp(_player, "-#{@mob_config[0]["power"].to_i/(2 * _player.def.to_i)}")
+
+        if (@mob_config[0]["deathchance"] != nil)
+          _chance = @mob_config[0]["deathchance"].split("/")
+          rand_num = (rand()*(1000))%(_chance[1].to_f - 1.0) + 1.0
+          if (rand_num.to_f > _chance[0].to_f)
+            redirect_to '/game/play'
+            return
+          end
+        end
+
         Quest.find_each do |i|
           @quest = i 
-          if (@quest != nil)
+          if (@quest != nil && @quest.id_user.to_i == current_user.id)
             @quest_config = load_yml("game_config/quests/#{@quest.name_quest}.yml")
-            _target_array = @quest.target
-            _target_array = _target_array.delete("[").delete("]").delete("\"").split(", ")
-            _count_array =  @quest.count.delete("[").delete("]").delete("\"").split(", ")
-            if (_target_array.length == _count_array.length)
-              if (@quest.target.include?(params[:commit]))
+            if (@quest.type_quest == "kill")
+              _target_array = @quest.target.delete("[").delete("]").delete("\"").split(", ")
+              _count_array =  @quest.count.delete("[").delete("]").delete("\"").split(", ")
+              if (@quest.target.include?(params[:commit]) && (_target_array.length == _count_array.length))
                 _index = _target_array.index(params[:commit])
                 if (_index != nil)
                   if (_count_array[_index].to_i > 0)
@@ -148,11 +166,14 @@ class GameController < ApplicationController
                   end
                   if (_count_array.length == _count_array.count("0")) 
                     @quest.update_attributes(stage: "255")
-                    _player = Player.find_by(id_user: current_user.id)
                     if (@quest_config[0]["complete"] != nil)
                       @quest_config[0]["complete"].each_with_index do |val, index|
                         if (val["money"] != nil)
                           _player.update_attributes(money: _player.money.to_i + val["money"].to_i)
+                        end
+
+                        if (val["hp"] != nil)
+                          change_hp(_player, val["hp"])
                         end
                       end
                     end 
@@ -175,4 +196,11 @@ class GameController < ApplicationController
                               "Game", "game", "game"]
     @page = "About"
   end
+
+  private
+    def change_hp(obj, val)
+      if (obj.immortality == false)
+        obj.update_attributes(hp: (obj.hp.to_i + val.to_i) % 100)
+      end
+    end
 end

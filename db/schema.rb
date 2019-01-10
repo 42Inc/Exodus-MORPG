@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_10_143756) do
+ActiveRecord::Schema.define(version: 2019_01_10_161507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2019_01_10_143756) do
     t.string "location"
     t.string "hp"
     t.string "money"
+    t.string "def"
+    t.boolean "immortality"
   end
 
   create_table "quests", force: :cascade do |t|
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_01_10_143756) do
     t.string "password_digest"
     t.boolean "adm"
     t.string "remember_digest"
+    t.boolean "active"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
   end
