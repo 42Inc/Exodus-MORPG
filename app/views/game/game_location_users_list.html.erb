@@ -26,7 +26,18 @@
           <% if @location_configuration != nil%>
             <%= Quest.find_each do |i|%>
               <% if i.id_user.to_i == current_user.id && i.stage != "255" %>
-                &nbsp&nbsp<%="- #{i.name_quest}"%>
+                &nbsp&nbsp<%="- #{i.name_quest} , Stage: #{i.stage}"%>
+                <br>
+                &nbsp&nbsp<%="Targets:"%>
+                <% _t_a = i.target.delete("[").delete("]").delete("\"").split(", ") %>
+                <% _c_a = i.count.delete("[").delete("]").delete("\"").split(", ") %>
+                <% if _t_a.length == _c_a.length %>
+                  <% _t_a.each_with_index do |val,index|%>
+                    <br>
+                    &nbsp&nbsp<%="- #{val} , count: #{_c_a[_t_a.index(val)]}"%>
+                  <% end %>
+                <% end %>
+
                 <br>
               <%end%>
             <% end %>

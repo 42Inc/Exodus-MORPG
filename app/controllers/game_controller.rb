@@ -119,19 +119,50 @@ class GameController < ApplicationController
         if (@user != nil)
           @quest = Quest.find_by(id_quest: @quest_config[0]["questId"], id_user: @user.id)
           if (@quest == nil)
-            @quest = Quest.new(id_user: @user.id, stage: "1", id_quest: @quest_config[0]["questId"][0], name_quest: params[:commit], type_quest: @quest_config[0]["type_quest"][0], target: @quest_config[0]["target"][0], count: @quest_config[0]["count"][0]);
+            @quest = Quest.new(id_user: @user.id, stage: "1", id_quest: @quest_config[0]["questId"][0], name_quest: params[:commit], type_quest: @quest_config[0]["type_quest"][0], target: @quest_config[0]["target"], count: @quest_config[0]["count"]);
             @quest.save
+          elsif (@quest_config[0]["repeat"] != nil && @quest_config[0]["repeat"] == true)
+            @quest.update_attributes(stage: "1", count: @quest_config[0]["count"]);
           end
         end  
       end
     elsif (params[:id] == "3") 
       if (params[:commit] != nil)
-        @quest = Quest.find_by(target: params[:commit], id_user: current_user.id, type_quest: "kill")
-        if (@quest != nil)
-          if (@quest.count.to_i > 0)
-            @quest.update_attributes(count: (@quest.count.to_i - 1))
-          else
-            @quest.update_attributes(stage: "255")
+        Quest.find_each do |i|
+          @quest = i 
+          if (@quest != nil)
+            @quest_config = load_yml("game_config/quests/#{@quest.name_quest}.yml")
+            _target_array = @quest.target
+            _target_array = _target_array.delete("[").delete("]").delete("\"").split(", ")
+            _count_array =  @quest.count.delete("[").delete("]").delete("\"").split(", ")
+            if (_target_array.length == _count_array.length)
+              if (@quest.target.include?(params[:commit]))
+                _index = _target_array.index(params[:commit])
+                if (_index != nil)
+                  if (_count_array[_index].to_i > 0)
+                    _count_array[_index] = (_count_array[_index].to_i - 1).to_s
+                    if (_count_array[_index] == "0")
+                      @quest.update_attributes(stage: @quest.stage.to_i + 1)
+                    end
+                    @quest.update_attributes(count: _count_array)
+                  end
+                  if (_count_array.length == _count_array.count("0")) 
+                    @quest.update_attributes(stage: "255")
+                    _player = Player.find_by(id_user: current_user.id)
+                    if (@quest_config[0]["complete"] != nil)
+                      @quest_config[0]["complete"].each_with_index do |val, index|
+                        if (val["money"] != nil)
+                          _player.update_attributes(money: _player.money.to_i + val["money"].to_i)
+                        end
+                      end
+                    end 
+                    _player.update_attributes(money: _player.money.to_i + 2)
+                  end
+                end
+              else
+                nothing()
+              end
+            end
           end
         end  
       end

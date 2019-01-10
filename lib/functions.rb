@@ -24,6 +24,6 @@ def set_color(obj, color)
 end
 
 def load_yml(filename)
-  _file = YAML.load_file(filename)
+  _file = YAML.load_file("#{filename}")
   return _file
 end

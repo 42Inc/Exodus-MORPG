@@ -1,0 +1,24 @@
+---
+
+- quest: BattleОfAzeroth
+  questId:
+    - 2
+  type_quest:
+    - kill
+  target:
+    - Hungry rat
+    - Hell flower
+    - Sceleton archer
+    - Northern Goblin
+    - Ruin Spartoi
+    - Dragon of wind
+  count:
+    - 100
+    - 100
+    - 100
+    - 100
+    - 100
+    - 100
+  repeat: false
+  complete:
+    - money: 100000
