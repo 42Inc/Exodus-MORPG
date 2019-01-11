@@ -1,0 +1,8 @@
+<%- provide(:titlepage, "#{@controller} : #{@page}") %>
+<%= render :template => "layouts/application" %>
+
+<div align="center">
+  <%= form_for(:game, url: '/game/posts/4') do %>
+    <%= submit_tag "Resurrect", class: "btn btn-primary" %>
+  <% end %>
+</div>

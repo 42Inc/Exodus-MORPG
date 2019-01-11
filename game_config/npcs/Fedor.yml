@@ -1,3 +1,6 @@
 ---
 
 - npc: Fedor
+  
+  quests:
+    - heal

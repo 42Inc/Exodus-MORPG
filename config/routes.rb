@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/game' => "game#game"
   get '/game/about' => "game#about"
   get '/game/play' => "game#play"
+  get '/game/dead' => "game#dead"
   get '/login'   => 'sessions#new'
 
   #resources
