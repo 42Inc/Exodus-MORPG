@@ -6,10 +6,10 @@
   type_quest:
     - kill
   target:
-    - Hungry rat
-    - Hell flower
-    - Sceleton archer
-    - Northern Goblin
+    - Kill Hungry rat
+    - Collect Hell flower
+    - Spook Sceleton archer
+    - Kill Northern Goblin
     - Ruin Spartoi
   count:
     - 100

@@ -23,6 +23,44 @@ body {
   -ms-background-size: cover;
   background-size: cover;
 }
+
+#titles
+{
+	position: absolute;
+	width: 20em;
+	height: 50em;
+	bottom: 0;
+	left: 50%;
+	margin-left: -9em;
+	font-size: 350%;
+	font-weight: bold;
+	text-align: justify;
+	overflow: hidden;
+	transform-origin: 50% 100%;
+	transform: perspective(300px) rotateX(15deg);
+}
+#titles:after
+{
+	position: absolute;
+	content: ' ';
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 60%;
+	background-image: linear-gradient(top, rgba(209,160,2,1) 0%, transparent 100%);
+	pointer-events: none;
+}
+#titlecontent
+{
+	position: absolute;
+	top: 100%;
+	animation: scroll 100s linear 0s infinite;
+}
+@keyframes scroll {
+	0% { top: 100%; }
+	100% { top: -170%; }
+}
+
  .three {
   padding: 50px 20px;
   text-align: center;
@@ -332,7 +370,7 @@ iframe{
 
 .button7 {
   font-weight: 700;
-  width: 150px;
+  width: 260px;
   color: white;
   text-decoration: none;
   padding: .8em 1em calc(.8em + 3px);
