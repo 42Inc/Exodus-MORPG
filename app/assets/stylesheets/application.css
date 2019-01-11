@@ -325,3 +325,6 @@ ul#my_menu li a span{
 .login {
   background: #d1a002;
 }
+iframe{
+  border: 0px;
+}

@@ -1,6 +1,6 @@
 <form name="config_list" align="center">
   <div align="left">
-    <table border="1" width="100%">
+    <table border="0" width="100%">
       <tr>
         <td width="100%">
           <% if @location_configuration != nil %>
@@ -12,7 +12,7 @@
               <% @location_configuration[0]["npc"].each_with_index do |value,index| %>
                 <font size="4" face=<%= @face %> color="lightblue"> <%= " - #{value}" %> </font>
                   <% @npc_configuration = load_yml("game_config/npcs/#{value}.yml") %>
-                  <% if @npc_configuration[0]["quests"] != nil%>                  
+                  <% if @npc_configuration[0]["quests"] != nil%>
                     <br>
                     <font size="4" face=<%= @face %> color="lightblue"> &nbsp&nbspQuests&nbsp:</font>
                     <% @npc_configuration[0]["quests"].each_with_index do |q,i| %>
@@ -26,7 +26,7 @@
             <% if @location_configuration[0]["teleport"] != nil%>
               <font size="4" face=<%= @face %> color="lightblue"> Teleports&nbsp:
               <br>
-              <% @location_configuration[0]["teleport"].each_with_index do |value,index| %> 
+              <% @location_configuration[0]["teleport"].each_with_index do |value,index| %>
                 -&nbsp<%= "#{value}" %>
                 <br>
               <% end %>
