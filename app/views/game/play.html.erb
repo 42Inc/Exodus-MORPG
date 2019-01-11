@@ -47,7 +47,7 @@
               <% if @location_configuration[0]["teleport"] != nil%>
                 <% @location_configuration[0]["teleport"].each_with_index do |value,index| %>
                   <%= form_for(:game, url: '/game/posts/1') do %>
-                    <%= submit_tag "#{value}", class: "btn btn-primary" %>
+                    <%= submit_tag "#{value}", class: "button7" %>
                   <% end %>
                 <% end %>
               <% end %>
@@ -60,7 +60,7 @@
               <% if @location_configuration[0]["mobs"] != nil%>
                 <% @location_configuration[0]["mobs"].each_with_index do |value,index| %>
                   <%= form_for(:game, url: '/game/posts/3') do %>
-                    <%= submit_tag "#{value}", class: "btn btn-primary" %>
+                    <%= submit_tag "#{value}", class: "button7" %>
                   <% end %>
                 <% end %>
               <% end %>
@@ -80,7 +80,7 @@
                  <% @quest = Quest.find_by(id_quest: @quest_config[0]["questId"], id_user: @user.id) %>
                  <% if (@quest == nil || (@quest_config[0]["repeat"] != nil && @quest_config[0]["repeat"] == true && @quest.stage == "255")) %>
                    <%= form_for(:game, url: '/game/posts/2') do %>
-                     <%= submit_tag "#{q}", class: "btn btn-primary" %>
+                     <%= submit_tag "#{q}", class: "button7" %>
                    <% end %>
                  <% end %>
                <% end %>
