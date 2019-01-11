@@ -59,6 +59,12 @@ class GameController < ApplicationController
     @links_navigation_menu = ["Main", "server", "main",
                               "Game", "game", "game"]
     @page = "Dead"
+    if logged_in?
+      if (Player.find_by(id_user: current_user.id).hp.to_i > 0)
+        redirect_to '/game/play'
+        return
+      end
+    end
   end
 
   def game_iframes_1
