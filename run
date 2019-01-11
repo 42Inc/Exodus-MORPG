@@ -19,4 +19,15 @@ case ARGV.length
     nothing()
 end
 
-exec("./bin/exodus #{$server_ip} #{$server_port}")
+sched_pid = fork do
+  exec("./bin/exodus #{$server_ip} #{$server_port}")
+end
+
+server_pid = fork do
+  exec("./bin/sched.rb")
+end
+
+
+Process.wait(server_pid)
+Process.wait(sched_pid)
+

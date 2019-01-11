@@ -19,8 +19,20 @@ class ApplicationController < ActionController::Base
     @game_configuration = []
     @location_configuration = []
     if (ServerConfig.first == nil)
-      _s = ServerConfig.new(permit_registration: false, show_adm_menu: "layout")
+      _s = ServerConfig.new(permit_registration: false, show_adm_menu: "layout", time_to_disconnect: "600")
       _s.save
+    end
+
+    if ServerConfig.first.show_adm_menu == nil
+      ServerConfig.first.update_attribute(:show_adm_menu, "layout")
+    end
+
+    if ServerConfig.first.permit_registration == nil
+      ServerConfig.first.update_attribute(:permit_registration, false)
+    end
+
+    if ServerConfig.first.time_to_disconnect == nil
+      ServerConfig.first.update_attribute(:time_to_disconnect, "600")
     end
   end
 end

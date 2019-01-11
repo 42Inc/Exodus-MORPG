@@ -21,6 +21,10 @@ class GameController < ApplicationController
                               "Game", "game", "game"]
     @page = "Play"
     @user = current_user
+    if !logged_in?
+      redirect_to '/game'
+      return
+    end
     if (@user != nil)
       @player = Player.find_by(id_user: @user.id)
       @location = @player.location
