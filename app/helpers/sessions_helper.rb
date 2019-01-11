@@ -15,6 +15,7 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id[0])
       if (@current_user.active == false)
         session.delete(:user_id)
+        @current_user = nil
       else
         log_in @current_user
       end

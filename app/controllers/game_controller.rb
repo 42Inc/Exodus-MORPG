@@ -185,7 +185,7 @@ class GameController < ApplicationController
           @quest = i 
           if (@quest != nil && @quest.id_user.to_i == current_user.id)
             @quest_config = load_yml("game_config/quests/#{@quest.name_quest}.yml")
-            if (@quest.type_quest == "kill")
+            if (@quest.type_quest == "kill" && @quest.stage != "255")
               _target_array = @quest.target.delete("[").delete("]").delete("\"").split(", ")
               _count_array =  @quest.count.delete("[").delete("]").delete("\"").split(", ")
               if (@quest.target.include?(params[:commit]) && (_target_array.length == _count_array.length))
