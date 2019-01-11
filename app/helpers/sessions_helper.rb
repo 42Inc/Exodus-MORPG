@@ -3,7 +3,9 @@ module SessionsHelper
 
   def log_in(user)
     session[:user_id] = [user.id, Time.now.to_i]
-    user.update_attributes(active: true)
+    if (user.active == false)
+      user.update_attributes(active: true)
+    end
   end
 
 
@@ -13,7 +15,9 @@ module SessionsHelper
       time_diff = Time.now.to_i - user_id[1]
       if (time_diff > $time_to_disconnect)
         session.delete(:user_id)
-        current_user.update_attributes(active: false)
+        if (user.active == true)
+          current_user.update_attributes(active: false)
+        end
       else
         log_in @current_user
       end
@@ -40,7 +44,9 @@ module SessionsHelper
   def log_out
     forget(current_user)
     session.delete(:user_id)
-    current_user.update_attribute(:active, false)
+    if (current_user.active == true)
+      current_user.update_attribute(:active, false)
+    end
     @current_user = nil
   end
 

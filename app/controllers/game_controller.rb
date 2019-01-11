@@ -48,11 +48,17 @@ class GameController < ApplicationController
         @location_configuration = nil
       end 
       if (@player.hp.to_i <= 0)
-        redirect_to '/game'
+        redirect_to '/game/dead'
       end
     else 
       @location_configuration = nil
     end
+  end
+
+  def dead
+    @links_navigation_menu = ["Main", "server", "main",
+                              "Game", "game", "game"]
+    @page = "Dead"
   end
 
   def game_iframes_1
@@ -130,6 +136,9 @@ class GameController < ApplicationController
           elsif (@quest_config[0]["repeat"] != nil && @quest_config[0]["repeat"] == true)
             @quest.update_attributes(stage: "1", count: @quest_config[0]["count"]);
           end
+          if (@quest.type_quest == "heal")
+            complete_quest(Player.find_by(id_user: @user.id), @quest_config, @quest)
+          end
         end  
       end
     elsif (params[:id] == "3") 
@@ -165,18 +174,7 @@ class GameController < ApplicationController
                     @quest.update_attributes(count: _count_array)
                   end
                   if (_count_array.length == _count_array.count("0")) 
-                    @quest.update_attributes(stage: "255")
-                    if (@quest_config[0]["complete"] != nil)
-                      @quest_config[0]["complete"].each_with_index do |val, index|
-                        if (val["money"] != nil)
-                          _player.update_attributes(money: _player.money.to_i + val["money"].to_i)
-                        end
-
-                        if (val["hp"] != nil)
-                          change_hp(_player, val["hp"])
-                        end
-                      end
-                    end 
+                    complete_quest(_player, @quest_config, @quest)
                     _player.update_attributes(money: _player.money.to_i + 2)
                   end
                 end
@@ -187,6 +185,12 @@ class GameController < ApplicationController
           end
         end  
       end
+    elsif (params[:id] == "4") 
+      _player = Player.find_by(id_user: current_user.id)
+      _player.update_attributes(hp: 50)
+      _money = _player.money.to_i - 100
+      _money = _money < 0 ? 0 : _money
+      _player.update_attributes(money: _money)
     end
     redirect_to '/game/play'
   end
@@ -200,7 +204,24 @@ class GameController < ApplicationController
   private
     def change_hp(obj, val)
       if (obj.immortality == false)
-        obj.update_attributes(hp: (obj.hp.to_i + val.to_i) % 100)
+        _hp = (obj.hp.to_i + val.to_i)
+        _hp = _hp < 0 ? 0 : (_hp > 100 ? 100 : _hp) 
+        obj.update_attributes(hp: _hp)
+      end
+    end
+
+    def complete_quest(player, config, quest)
+      @quest.update_attributes(stage: "255")
+      if (@quest_config[0]["complete"] != nil)
+        @quest_config[0]["complete"].each_with_index do |val, index|
+          if (val["money"] != nil)
+            player.update_attributes(money: player.money.to_i + val["money"].to_i)
+          end
+
+          if (val["hp"] != nil)
+            change_hp(player, val["hp"])
+          end
+        end
       end
     end
 end
