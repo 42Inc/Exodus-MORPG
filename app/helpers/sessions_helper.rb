@@ -44,7 +44,7 @@ module SessionsHelper
   def log_out
     forget(current_user)
     session.delete(:user_id)
-    if (user.active == true)
+    if (current_user.active == true)
       current_user.update_attribute(:active, false)
     end
     @current_user = nil
