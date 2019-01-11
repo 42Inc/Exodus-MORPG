@@ -1,6 +1,13 @@
 <%- provide(:titlepage, "#{@controller} : #{@page}") %>
 <%= render :template => "layouts/application" %>
 
+<div class="area" style="color:red;"> YOU DIED! <br>
+<%= image_tag("death.gif") %>
+
+</div>
+
+
+<br><br><br>
 <div align="center">
   <%= form_for(:game, url: '/game/posts/4') do %>
     <%= submit_tag "Resurrect", class: "btn btn-primary" %>
