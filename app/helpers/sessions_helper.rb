@@ -15,7 +15,7 @@ module SessionsHelper
       time_diff = Time.now.to_i - user_id[1]
       if (time_diff > $time_to_disconnect)
         session.delete(:user_id)
-        if (user.active == true)
+        if (@current_user.active == true)
           current_user.update_attributes(active: false)
         end
       else
