@@ -1,0 +1,14 @@
+---
+
+- location: Goddard
+
+  npc:
+    - Geralt
+    - Fedor
+
+  teleport:
+    - Rune
+    - Shtudgard
+
+  mobs:
+    - Hungry rat

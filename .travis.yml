@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+  - 2.5.3
+branches:
+  only:
+    - master
+    - Exo-dev
+
+script:
+  - ./run test
+
+before_script:
+  - psql -c "create role rails_user with createdb login password 'Qq!2345678';" -U postgres
+  - ./bin/rake db:setup

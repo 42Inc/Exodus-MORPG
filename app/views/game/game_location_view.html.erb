@@ -1,0 +1,53 @@
+<form name="config_list" align="center">
+  <div align="left">
+    <table border="0" width="100%">
+      <tr>
+        <td width="100%">
+          <% if @location_configuration != nil %>
+            <font size="4" face=<%= @face %> color="lightblue"> Location&nbsp: <%= @location_configuration[0]["location"] ? @location_configuration[0]["location"] : "" %> </font>
+            <br>
+            <% if @location_configuration[0]["npc"] != nil%>
+              <font size="4" face=<%= @face %> color="lightblue"> NPCs&nbsp: </font>
+              <br>
+              <% @location_configuration[0]["npc"].each_with_index do |value,index| %>
+                <font size="4" face=<%= @face %> color="lightblue"> <%= " - #{value}" %> </font>
+                  <% @npc_configuration = load_yml("game_config/npcs/#{value}.yml") %>
+                  <% if @npc_configuration[0]["quests"] != nil%>
+                    <br>
+                    <font size="4" face=<%= @face %> color="lightblue"> &nbsp&nbspQuests&nbsp:</font>
+                    <% @npc_configuration[0]["quests"].each_with_index do |q,i| %>
+                      <br>
+                      <font size="4" face=<%= @face %> color="lightblue"> &nbsp&nbsp&nbsp&nbsp<%= "- #{q}" %> </font>
+                    <% end %>
+                  <% end %>
+                <br>
+              <% end %>
+            <% end %>
+            <% if @location_configuration[0]["teleport"] != nil%>
+              <font size="4" face=<%= @face %> color="lightblue"> Teleports&nbsp:
+              <br>
+              <% @location_configuration[0]["teleport"].each_with_index do |value,index| %>
+                -&nbsp<%= "#{value}" %>
+                <br>
+              <% end %>
+              </font>
+            <% end %>
+            <% if @location_configuration[0]["mobs"] != nil%>
+              <font size="4" face=<%= @face %> color="lightblue"> Mobs&nbsp: </font>
+              <br>
+              <% @location_configuration[0]["mobs"].each_with_index do |value,index| %>
+                <font size="4" face=<%= @face %> color="lightblue"> <%= " - #{value}" %> </font>
+                <br>
+              <% end %>
+            <% end %>
+          <% else %>
+            <font size="4" face=<%= @face %> color="lightblue"> Location&nbsp: </font>
+            <font size="4" face=<%= @face %> color="green"> <%= AdmViewDatum.find_by(id_user: current_user.id).view_location_iframe %> </font>
+            <br>
+            <font size="4" face=<%= @face %> color="red"> Not found! </font>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>

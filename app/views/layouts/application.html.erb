@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ExodusMorpg</title>
+    <title><%= yield(:titlepage)%></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,85 @@
   </head>
 
   <body>
+    <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>" align="center">
+          <%- if message_type == "danger" %>
+            <font size="6" face=<%= @face %> color="red">
+              <%= message %>
+            </font>
+          <%- else %>
+            <font size="6" face=<%= @face %> color="green">
+              <%= message %>
+            </font>
+          <%- end %>
+        </div>
+    <% end %>
+    <table align="center" border="0" width="100%">
+      <tr>
+        <td width="33%">
+          <form name="Navigation_menu" align="left">
+            <div align="left">
+              <%- @links_navigation_menu.each_with_index do |value, index|%>
+                <%- if (index % 3 == 0)%>
+                  <font size="4" face=<%= @face %>>
+                    <%= link_to value, :controller => @links_navigation_menu[index + 1], :action =>  @links_navigation_menu[index + 2] %>
+                  </font>
+                  <font size="4" face=<%= @face %> color="green">-&nbsp></font>
+                <%- end %>
+              <%- end %>
+              <font size="4" face=<%= @face %> color="gold"><%= @page %></font>
+            </div>
+          </form>
+        </td>
+
+        <td width="33%">
+          <form name="Current user" align="right">
+              <% if logged_in? %>
+                <div align="right">
+                  <font size="4" face=<%= @face %> color="gold">
+                    <%= link_to "User:", "/users/#{current_user.id}" %>&nbsp<%= current_user.name %>
+                    <br>
+                    <%= link_to "Log out", '/logout', method: "delete" %>
+                  </font>
+                </div>
+              <% else %>
+                <div align="right">
+                  <%= link_to "Log in", '/login' %>
+                </div>
+              <% end %>
+          </form>
+        </td>
+      </tr>
+    </table>
+
+    <% if ServerConfig.first.show_adm_menu == nil %>
+      <% ServerConfig.first.update_attributes(show_adm_menu: "layout") %>
+    <% end %>
+
+    <% if ServerConfig.first.show_adm_menu == "layout" || (ServerConfig.first.show_adm_menu == "default" && yield(:titlepage) == "Server : Main" ) %>
+      <table align="center" border="0" width="100%">
+        <tr>
+          <td width="50%">
+            <% if logged_in? %>
+              <%- if current_user.adm == true %>
+                <form name="Adm_menu" align="left">
+                  <font size="4" face=<%= @face %> color="purple">
+                    <%= link_to "Admin", :controller => "server", :action => "admin" %>
+                  </font>
+                </form>
+              <%- end %>
+            <%- end %>
+          </td>
+          <td width="50%">
+            <div name="Ip" align="center">
+              <font size="4" face=<%= @face %> color="lime"> Your ip : <%= request.remote_ip %> </font>
+              <br>
+              <font size="4" face=<%= @face %> color="red"> Current branch : <%= get_git_branch() %> </font>
+            </div >
+          </td>
+        </tr>
+      </table>
+    <% end %>
     <%= yield %>
   </body>
 </html>

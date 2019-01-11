@@ -1,0 +1,97 @@
+<%- provide(:titlepage, "#{@controller} : #{@page}") %>
+<%= render :template => "layouts/application" %>
+
+<div class="bubbles"></div>
+<div class="three"><h1> Play </h1></div>
+<% if logged_in? %>
+
+<table border="0" width="100%" class="admin-tab"  height="500px">
+  <tr>
+    <td width="33%">
+      <iframe name="game_config_list" src=<%= "#{get_game_iframe_1()}" %> scrolling="yes" width="100%" height="400px">
+      </iframe>
+    </td>
+    <td width="34%">
+      <table border="0" width="100%" >
+        <tr>
+          <td>
+            <font size="4" face=<%= @face %> color="lime"> <%= image_tag("hp.png") %> <%= "HP = #{Player.find_by(id_user: current_user.id).hp}" %> </font>
+          </td>
+          <td rowspan="3">
+              <%= image_tag("character.gif") %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <font size="4" face=<%= @face %> color="lime"> <%= image_tag("coin.png") %><%= "Money = #{Player.find_by(id_user: current_user.id).money}" %> </font>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <font size="4" face=<%= @face %> color="lime"> <%= image_tag("arm.png") %><%= "Arm = #{Player.find_by(id_user: current_user.id).def}" %> </font>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td width="33%">
+      <iframe name="game_users_list" src="/game/play/iframes_3/1" scrolling="yes" width="100%">
+      </iframe>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" height="100%">
+      <table border="0">
+        <tr>
+          <td width="50%">
+            <% if @location_configuration != nil %>
+              <% if @location_configuration[0]["teleport"] != nil%>
+                <% @location_configuration[0]["teleport"].each_with_index do |value,index| %>
+                  <%= form_for(:game, url: '/game/posts/1') do %>
+                    <%= submit_tag "#{value}", class: "button7" %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <font size="4" face=<%= @face %> color="red"> Wrong location. Please, call sysadm.</font>
+            <% end %>
+          </td>
+          <td width="50%">
+            <% if @location_configuration != nil %>
+              <% if @location_configuration[0]["mobs"] != nil%>
+                <% @location_configuration[0]["mobs"].each_with_index do |value,index| %>
+                  <%= form_for(:game, url: '/game/posts/3') do %>
+                    <%= submit_tag "#{value}", class: "button7" %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td width="34%">
+      <% if @location_configuration != nil %>
+        <% if @location_configuration[0]["npc"] != nil%>
+          <% @location_configuration[0]["npc"].each_with_index do |value,index| %>
+             <% @npc_configuration = load_yml("game_config/npcs/#{value}.yml") %>
+             <% if @npc_configuration[0]["quests"] != nil%>
+               <% @npc_configuration[0]["quests"].each_with_index do |q,i| %>
+                 <% @quest_config = load_yml("game_config/quests/#{q}.yml") %>
+                 <% @quest = Quest.find_by(id_quest: @quest_config[0]["questId"], id_user: @user.id) %>
+                 <% if (@quest == nil || (@quest_config[0]["repeat"] != nil && @quest_config[0]["repeat"] == true && @quest.stage == "255")) %>
+                   <%= form_for(:game, url: '/game/posts/2') do %>
+                     <%= submit_tag "#{q}", class: "button7" %>
+                   <% end %>
+                 <% end %>
+               <% end %>
+             <% end %>
+             <br>
+           <% end %>
+         <% end %>
+       <% end %>
+    </td>
+    <td width="33%">
+    </td>
+  </tr>
+</table>
+<% end %>

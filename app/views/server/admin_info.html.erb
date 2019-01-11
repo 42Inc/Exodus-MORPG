@@ -1,0 +1,47 @@
+<table border="1" width="100%">
+  <tr>
+    <td>
+      <form name="adm_info" align="center">
+        <div align="center">
+          <table border="1" width="100%">
+            <tr>
+              <td>
+                <font size="4" face=<%= @face %> color="lime"> Your ip : <%= request.remote_ip %> </font>
+              </td>
+              <td>
+                <font size="4" face=<%= @face %> color="lime"> port : <%= request.port %> </font>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <font size="4" face=<%= @face %> color="red"> Current branch : <%= get_git_branch() %> </font>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <font size="4" face=<%= @face %> color="orange"> Users&nbspcount&nbsp:&nbsp<%= User.count %> </font>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <font size="4" face=<%= @face %> color="orange"> Registration&nbsp:&nbsp </font>
+              <% if ServerConfig.first.permit_registration == true %>
+                <font size="4" face=<%= @face %> color="green"> Allow </font>
+              <% else %>
+                <font size="4" face=<%= @face %> color="red"> Deny </font>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <font size="4" face=<%= @face %> color="orange"> Adm_menu:&nbsp </font>
+              <font size="4" face=<%= @face %> color="blue"> <%= ServerConfig.first.show_adm_menu %> </font>
+            </td>
+          </tr>
+
+        </table>
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>

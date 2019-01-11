@@ -1,0 +1,13 @@
+---
+
+- location: Shtudgard
+  npc:
+    - Brian
+    - JIexa
+  teleport:
+    - Rune
+    - Goddard
+  mobs:
+    - Northern Goblin
+    - Ruin Spartoi
+    - Dragon of wind

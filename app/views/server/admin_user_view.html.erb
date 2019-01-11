@@ -1,0 +1,28 @@
+<form name="adm_user" align="center">
+  <div align="left">
+      <% user = User.find_by(id: AdmViewDatum.find_by(id_user: current_user.id).view_user_adm_iframe_id_1) %>
+      <table border="1" width="100%">
+      <tr>
+        <% if  user != nil %>
+          <td width="100%">
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspid&nbsp: <%= user.id %> </font>
+            <br>
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspname&nbsp: <%= user.name %> </font>
+            <br>
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspemail&nbsp: <%= user.email %> </font>
+            <br>
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspadm&nbsp: <%= user.adm %> </font>
+            <br>
+          </td>
+        <% else %>
+          <td width="100%">
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspid&nbsp: </font>
+            <font size="4" face=<%= @face %> color="green"> <%= AdmViewDatum.find_by(id_user: current_user.id).view_user_adm_iframe_id_1 %> </font>
+            <br>
+            <font size="4" face=<%= @face %> color="red"> Not found! </font>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</form>

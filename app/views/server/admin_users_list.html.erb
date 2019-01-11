@@ -1,0 +1,21 @@
+<form name="adm_users" align="center">
+  <div align="left">
+    <% User.ids.sort.each_with_index do |value,index| %>
+      <% user = User.find_by(id: value) %>
+      <table border="1" width="100%">
+        <tr>
+          <td width="100%">
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspid&nbsp: <%= user.id %> </font>
+            <br>
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspname&nbsp: <%= user.name %> </font>
+            <br>
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspemail&nbsp: <%= user.email %> </font>
+            <br>
+            <font size="4" face=<%= @face %> color="lightblue"> User&nbspadm&nbsp: <%= user.adm %> </font>
+            <br>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</form>

@@ -1,0 +1,11 @@
+---
+
+- quest: heal
+  questId:
+    - 3
+  type_quest:
+    - heal
+  repeat: true
+  complete:
+    - money: -100
+    - hp: 30

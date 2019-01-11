@@ -1,0 +1,17 @@
+---
+
+- quest: KillingMonsters
+  questId:
+    - 1
+  type_quest:
+    - kill
+  target:
+    - Hungry rat
+    - Hell flower
+  count:
+    - 3
+    - 2
+  repeat: true
+  complete:
+    - money: 100
+    - hp: 10

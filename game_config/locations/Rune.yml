@@ -1,0 +1,13 @@
+---
+
+- location: Rune
+  npc:
+    - Allenos
+    - Gerald
+
+  teleport:
+    - Shtudgard
+
+  mobs:
+    - Hell flower
+    - Sceleton archer
