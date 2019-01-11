@@ -1,23 +1,20 @@
 module SessionsHelper
-  $time_to_disconnect = 1800
 
   def log_in(user)
     session[:user_id] = [user.id, Time.now.to_i]
     if (user.active == false)
-      user.update_attributes(active: true)
+      user.update_attribute(:active, true)
+    end
+    if (user.login_time == nil || user.login_time.to_i != Time.now.to_i)
+      user.update_attribute(:login_time, Time.now)
     end
   end
-
 
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id[0])
-      time_diff = Time.now.to_i - user_id[1]
-      if (time_diff > $time_to_disconnect)
+      if (@current_user.active == false)
         session.delete(:user_id)
-        if (user.active == true)
-          current_user.update_attributes(active: false)
-        end
       else
         log_in @current_user
       end
