@@ -143,9 +143,11 @@ class GameController < ApplicationController
           if (@quest == nil)
             @quest = Quest.new(id_user: @user.id, stage: "1", id_quest: @quest_config[0]["questId"][0], name_quest: params[:commit], type_quest: @quest_config[0]["type_quest"][0], target: @quest_config[0]["target"], count: @quest_config[0]["count"]);
             if (@quest.type_quest == "heal")
-              if (Player.find_by(id_user: @user.id).money.to_i >= -@quest_config[0]["complete"]["money"].to_i)
+              @quest_config[0]["complete"].each_with_index do |v,i|
+                if (v["money"] != nil && Player.find_by(id_user: @user.id).money.to_i >= -1*v["money"].to_i )
                 @quest.save
                 complete_quest(Player.find_by(id_user: @user.id), @quest_config, @quest)
+                end
               end
             else
               @quest.save
