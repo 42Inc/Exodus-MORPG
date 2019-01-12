@@ -9,9 +9,9 @@ class GameControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get play" do
-    get '/game/play'
+    get '/game'
     assert_response :success
-    assert_select "title", "Game : Play"
+    assert_select "title", "Game : Game"
   end
 
   test "should get dead" do

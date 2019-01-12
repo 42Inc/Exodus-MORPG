@@ -6,8 +6,8 @@
   type_quest:
     - kill
   target:
-    - Hungry rat
-    - Hell flower
+    - Kill Hungry rat
+    - Collect Hell flower
   count:
     - 3
     - 2

@@ -21,6 +21,10 @@ class GameController < ApplicationController
                               "Game", "game", "game"]
     @page = "Play"
     @user = current_user
+    if !logged_in?
+      redirect_to '/game'
+      return
+    end
     if (@user != nil)
       @player = Player.find_by(id_user: @user.id)
       @location = @player.location
@@ -138,12 +142,27 @@ class GameController < ApplicationController
           @quest = Quest.find_by(id_quest: @quest_config[0]["questId"], id_user: @user.id)
           if (@quest == nil)
             @quest = Quest.new(id_user: @user.id, stage: "1", id_quest: @quest_config[0]["questId"][0], name_quest: params[:commit], type_quest: @quest_config[0]["type_quest"][0], target: @quest_config[0]["target"], count: @quest_config[0]["count"]);
-            @quest.save
+            if (@quest.type_quest == "heal")
+              @quest_config[0]["complete"].each_with_index do |v,i|
+                if (v["money"] != nil && Player.find_by(id_user: @user.id).money.to_i >= -1*v["money"].to_i )
+                @quest.save
+                complete_quest(Player.find_by(id_user: @user.id), @quest_config, @quest)
+                end
+              end
+            else
+              @quest.save
+            end
           elsif (@quest_config[0]["repeat"] != nil && @quest_config[0]["repeat"] == true)
-            @quest.update_attributes(stage: "1", count: @quest_config[0]["count"]);
-          end
-          if (@quest.type_quest == "heal")
-            complete_quest(Player.find_by(id_user: @user.id), @quest_config, @quest)
+            if (@quest.type_quest == "heal")
+              @quest_config[0]["complete"].each_with_index do |v,i|
+                if (v["money"] != nil && Player.find_by(id_user: @user.id).money.to_i >= -1*v["money"].to_i )
+                  @quest.update_attributes(stage: "1", count: @quest_config[0]["count"]);
+                  complete_quest(Player.find_by(id_user: @user.id), @quest_config, @quest)
+                end
+              end
+            else
+              @quest.update_attributes(stage: "1", count: @quest_config[0]["count"]);
+            end
           end
         end  
       end
@@ -166,7 +185,7 @@ class GameController < ApplicationController
           @quest = i 
           if (@quest != nil && @quest.id_user.to_i == current_user.id)
             @quest_config = load_yml("game_config/quests/#{@quest.name_quest}.yml")
-            if (@quest.type_quest == "kill")
+            if (@quest.type_quest == "kill" && @quest.stage != "255")
               _target_array = @quest.target.delete("[").delete("]").delete("\"").split(", ")
               _count_array =  @quest.count.delete("[").delete("]").delete("\"").split(", ")
               if (@quest.target.include?(params[:commit]) && (_target_array.length == _count_array.length))
@@ -221,7 +240,9 @@ class GameController < ApplicationController
       if (@quest_config[0]["complete"] != nil)
         @quest_config[0]["complete"].each_with_index do |val, index|
           if (val["money"] != nil)
-            player.update_attributes(money: player.money.to_i + val["money"].to_i)
+            _money = player.money.to_i + val["money"].to_i
+            _money = _money < 0 ? 0 : _money
+            player.update_attributes(money: _money)
           end
 
           if (val["hp"] != nil)
